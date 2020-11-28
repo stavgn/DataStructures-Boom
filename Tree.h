@@ -13,7 +13,7 @@ namespace DS
         ~Tree();
         void insert(KEY key, DATA data);
         void remove(KEY key);
-        *DATA find(KEY key);
+        DATA *find(KEY key);
         void traverse_print();
     };
 
