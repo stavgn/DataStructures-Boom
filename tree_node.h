@@ -8,6 +8,7 @@ namespace DS
     {
     private:
         const int index_array_size = 3;
+        const int children_array_size = 4;
         /* data */
     public:
         KEY key;                                 //in case of leaf
@@ -20,7 +21,8 @@ namespace DS
 
         tree_node(KEY key = KEY());
         ~tree_node();
-        void insert(tree_node<KEY, DATA> *node);
+        int insert(tree_node<KEY, DATA> *node); //returns the place in the node of the new node
+        tree_node<KEY, DATA> *remove(KEY key);
     };
 
     template <class KEY, class DATA>
@@ -40,7 +42,7 @@ namespace DS
     }
 
     template <class KEY, class DATA>
-    void tree_node<KEY, DATA>::insert(tree_node *node)
+    int tree_node<KEY, DATA>::insert(tree_node *node)
     {
         int place_in_node;
         for (int place_in_node = 0; place_in_node < length; place_in_node++)
@@ -63,6 +65,26 @@ namespace DS
             index_array[place_in_node - 1] = node->key;
         }
         length += 1;
+        return place_in_node;
+    }
+    template <class KEY, class DATA>
+    tree_node<KEY, DATA> *tree_node<KEY, DATA>::remove(KEY key)
+    {
+        int place_in_node;
+        for (place_in_node = 0; (place_in_node < length) && (key != children_array[place_in_node]->key); place_in_node++)
+            ; // find the place in the node
+        if (key != children_array[place_in_node]->key)
+        {
+            return nullptr; //case not found
+        }
+        tree_node<KEY, DATA> *removen_node = children_array[place_in_node];
+        for (int i = place_in_node; i < length - 1; i++)
+        {
+            children_array[i] = children_array[i + 1];
+        }
+        children_array[length - 1] = nullptr;
+        length -= 1;
+        return removen_node;
     }
 
 } // namespace DS
