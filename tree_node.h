@@ -15,6 +15,8 @@ namespace DS
         tree_node<KEY, DATA> *children_array[4]; //in case of node
         DATA *data_ptr;                          //in case of leaf
         int length;
+        tree_node<KEY, DATA> *left_ptr;  //in case of leaf
+        tree_node<KEY, DATA> *right_ptr; //in case of leaf
 
         tree_node(KEY key = KEY());
         ~tree_node();
@@ -60,6 +62,7 @@ namespace DS
         {
             index_array[place_in_node - 1] = node->key;
         }
+        length += 1;
     }
 
 } // namespace DS
