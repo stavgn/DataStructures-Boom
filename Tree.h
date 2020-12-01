@@ -237,7 +237,7 @@ namespace DS
                 node->left_ptr->right_ptr = node->right_ptr;
                 node->right_ptr->left_ptr = node->left_ptr;
             }
-            delete data;
+            delete node->data_ptr;
             delete node;
             return;
         }
@@ -270,6 +270,7 @@ namespace DS
             tree_node<KEY, DATA> *child_node = root_ptr->children_array[0];
             delete root_ptr;
             root_ptr = child_node;
+            return;
         }
     }
 
