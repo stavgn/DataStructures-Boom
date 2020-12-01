@@ -75,7 +75,6 @@ namespace DS
             return tmp_node->data_ptr;
         }
     }
-
     template <class KEY, class DATA>
     bool Tree<KEY, DATA>::insert_node_by_ptr(tree_node<KEY, DATA> *node, tree_node<KEY, DATA> *father_node)
     {
@@ -104,8 +103,8 @@ namespace DS
             else
             {
                 max_leaf = node;
-                min_node = node;
-                max_node = root_ptr;
+                min_node = root_ptr;
+                max_node = node;
             }
             max_node->left_ptr = min_node;
             min_node->right_ptr = max_node;
@@ -115,6 +114,75 @@ namespace DS
             new_father->children_array[1] = max_node;
             new_father->length = 2;
             return true;
+        }
+
+        if (is_leaf(father_node->children_array[0]))
+        {
+            if (find_node(node->key, father_node) != nullptr) // incase the node is already exist
+            {
+                return false;
+            }
+            int place_in_node = father_node->insert(node);
+            if (place_in_node == 0)
+            {
+                tree_node<KEY, DATA> *old_brother_node = father_node->children_array[place_in_node + 1];
+                assert(old_brother_node != nullptr);
+                if (old_brother_node->left_ptr == nullptr)
+                {
+                    node->left_ptr = nullptr;
+                }
+                else
+                {
+                    old_brother_node->left_ptr->right_ptr = node;
+                }
+
+                old_brother_node->left_ptr = node;
+                node->right_ptr = old_brother_node;
+            }
+            else
+            {
+                tree_node<KEY, DATA> *young_brother_node = father_node->children_array[place_in_node - 1];
+                if (young_brother_node->right_ptr == nullptr) // the new node is the bigest leaf now
+                {
+                    assert(young_brother_node == max_leaf);
+                    max_leaf = node;
+                    node->right_ptr = nullptr;
+                }
+                else
+                {
+                    young_brother_node->right_ptr->left_ptr = node;
+                }
+
+                young_brother_node->right_ptr = node;
+                node->left_ptr = young_brother_node;
+            }
+            return true;
+        }
+
+        else if (!is_leaf(father_node->children_array[0]))
+        {
+            int i;
+            for (i = 0; ((i < father_node->length - 1) && !(node->key < father_node->index_array[i])); i++)
+                ;
+            assert(father_node->children_array[i] != nullptr);
+            tree_node<KEY, DATA> *child_node = father_node->children_array[i];
+            if (!insert_node_by_ptr(node, child_node))
+            {
+                return false;
+            }
+            if (child_node->length == 4) //incase we need to split
+            {
+                tree_node<KEY, DATA> *new_splited_node = new tree_node<KEY, DATA>(child_node->index_array[2]);
+                new_splited_node->children_array[0] = child_node->children_array[2];
+                new_splited_node->children_array[1] = child_node->children_array[3];
+                new_splited_node->length = 2;
+
+                child_node->children_array[2] = child_node->children_array[3] = nullptr;
+                child_node->length = 2;
+
+                father_node->insert(new_splited_node);
+                return true;
+            }
         }
     }
 } // namespace DS
