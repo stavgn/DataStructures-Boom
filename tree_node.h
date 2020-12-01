@@ -1,6 +1,8 @@
 #ifndef TREE_NODE_H
 #define TREE_NODE_H
 
+#include <cassert>
+
 namespace DS
 {
     template <class KEY, class DATA>
@@ -32,9 +34,9 @@ namespace DS
                                                                nullptr}),
                                                data_ptr(nullptr)
     {
-        key(key);
-        index_array[0](key);
-        length(0);
+        key = (key);
+        index_array[0] = (key);
+        length = (0);
     }
     template <class KEY, class DATA>
     tree_node<KEY, DATA>::~tree_node()
@@ -65,6 +67,7 @@ namespace DS
             index_array[place_in_node - 1] = node->key;
         }
         length += 1;
+        assert(length <= 4);
         return place_in_node;
     }
     template <class KEY, class DATA>
@@ -75,6 +78,7 @@ namespace DS
             ; // find the place in the node
         if (key != children_array[place_in_node]->key)
         {
+            assert(place_in_node == length);
             return nullptr; //case not found
         }
         tree_node<KEY, DATA> *removen_node = children_array[place_in_node];
@@ -84,6 +88,7 @@ namespace DS
         }
         children_array[length - 1] = nullptr;
         length -= 1;
+        assert(length >= 2);
         return removen_node;
     }
 
