@@ -32,7 +32,9 @@ namespace DS
                                                                nullptr,
                                                                nullptr,
                                                                nullptr}),
-                                               data_ptr(nullptr)
+                                               data_ptr(nullptr),
+                                               left_ptr(nullptr),
+                                               right_ptr(nullptr)
     {
         key = (key);
         index_array[0] = (key);
@@ -46,6 +48,7 @@ namespace DS
     template <class KEY, class DATA>
     int tree_node<KEY, DATA>::insert(tree_node *node)
     {
+        assert(length < 4);
         int place_in_node;
         for (int place_in_node = 0; place_in_node < length; place_in_node++)
         {
@@ -73,6 +76,7 @@ namespace DS
     template <class KEY, class DATA>
     tree_node<KEY, DATA> *tree_node<KEY, DATA>::remove(KEY key)
     {
+        assert(length > 1);
         int place_in_node;
         for (place_in_node = 0; (place_in_node < length) && (key != children_array[place_in_node]->key); place_in_node++)
             ; // find the place in the node
