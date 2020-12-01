@@ -18,7 +18,7 @@ namespace DS
     public:
         Tree();
         ~Tree();
-        void insert(KEY key, DATA data);
+        bool insert(KEY key, DATA *data);
         void remove(KEY key);
         DATA *find(KEY key);
         void traverse_print();
@@ -184,6 +184,18 @@ namespace DS
                 return true;
             }
         }
+    }
+    template <class KEY, class DATA>
+    bool Tree<KEY, DATA>::insert(KEY key, DATA *data)
+    {
+        tree_node<KEY, DATA> *new_node = new tree_node<KEY, DATA>(key);
+        new_node->data_ptr = data;
+        if (!insert_node_by_ptr(new_node, root_ptr))
+        {
+            delete new_node;
+            return false;
+        }
+        return true;
     }
 } // namespace DS
 
