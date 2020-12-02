@@ -15,6 +15,7 @@ namespace DS
         bool is_leaf(tree_node<KEY, DATA> *node);
         bool insert_node_by_ptr(tree_node<KEY, DATA> *node, tree_node<KEY, DATA> *father_node);
         void remove_node_by_ptr(tree_node<KEY, DATA> *node, tree_node<KEY, DATA> *father_node);
+        void balnce_node(tree_node<KEY, DATA> *unbalnced_node, tree_node<KEY, DATA> *balnced_node, tree_node<KEY, DATA> *father_node);
 
     public:
         Tree();
@@ -252,16 +253,17 @@ namespace DS
             if (child_node->length < 2)
             {
                 assert(child_node->length == 1);
-                /*******
-                 * 
-                 * 
-                 * 
-                 * 
-                 * need to fill this part
-                 * 
-                 * 
-                 * ***/
-            }
+                if(i == 0) //if the child is first born
+                {
+                    balnce_node(child_node,father_node->children_array[i+1],father_node);
+                }
+                else
+                {
+                    assert((i==2) || (i==3));
+                    balnce_node(child_node,father_node->children_array[i-1],father_node);
+uioujo
+                }
+             }
         }
         if (root_ptr->length < 2)
         {
@@ -272,6 +274,11 @@ namespace DS
             root_ptr = child_node;
             return;
         }
+    }
+
+    template <class KEY, class DATA>
+    void Tree<KEY, DATA>::balnce_node(tree_node<KEY, DATA> *unbalnced_node, tree_node<KEY, DATA> *balnced_node, tree_node<KEY, DATA> *father_node)
+    {
     }
 
 } // namespace DS

@@ -37,7 +37,7 @@ namespace DS
                                                right_ptr(nullptr)
     {
         key = (key);
-        index_array[0] = (key);
+        index_array[0] = &this.key;
         length = (0);
     }
     template <class KEY, class DATA>
