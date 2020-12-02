@@ -15,7 +15,7 @@ namespace DS
         bool is_leaf(tree_node<KEY, DATA> *node);
         bool insert_node_by_ptr(tree_node<KEY, DATA> *node, tree_node<KEY, DATA> *father_node);
         void remove_node_by_ptr(tree_node<KEY, DATA> *node, tree_node<KEY, DATA> *father_node);
-        void balnce_node(tree_node<KEY, DATA> *unbalnced_node, tree_node<KEY, DATA> *balnced_node, tree_node<KEY, DATA> *father_node);
+        void balnce_node(tree_node<KEY, DATA> *unbalnced_node, tree_node<KEY, DATA> *brother_node, tree_node<KEY, DATA> *father_node, int place_in_node);
 
     public:
         Tree();
@@ -253,16 +253,16 @@ namespace DS
             if (child_node->length < 2)
             {
                 assert(child_node->length == 1);
-                if(i == 0) //if the child is first born
+                if (i == 0) //if the child is first born
                 {
-                    balnce_node(child_node,father_node->children_array[i+1],father_node);
+                    balnce_node(child_node, father_node->children_array[i + 1], father_node, i);
                 }
                 else
                 {
-                    assert((i==2) || (i==3));
-                    balnce_node(child_node,father_node->children_array[i-1],father_node);
+                    assert((i == 2) || (i == 3));
+                    balnce_node(child_node, father_node->children_array[i - 1], father_node, i);
                 }
-             }
+            }
         }
         if (root_ptr->length < 2)
         {
@@ -276,8 +276,45 @@ namespace DS
     }
 
     template <class KEY, class DATA>
-    void Tree<KEY, DATA>::balnce_node(tree_node<KEY, DATA> *unbalnced_node, tree_node<KEY, DATA> *balnced_node, tree_node<KEY, DATA> *father_node)
+    void Tree<KEY, DATA>::balnce_node(tree_node<KEY, DATA> *unbalnced_node, tree_node<KEY, DATA> *brother_node, tree_node<KEY, DATA> *father_node, int place_in_node)
     {
+        assert(unbalnced_node->length == 1);
+        if (brother_node->length == 3) // taking from a brother
+        {
+            tree_node<KEY, DATA> *taken_node;
+            if (unbalnced_node->key < brother_node) // older brother
+            {
+                taken_node = brother_node->children_array[0];
+                unbalnced_node->insert(taken_node);
+                father_node->index_array[0] = brother_node->index_array[0]; // casue we are in older brother case
+                brother_node->remove(taken_node->key);
+            }
+            else // younger brother
+            {
+                taken_node = brother_node->children_array[2]; //max child
+                unbalnced_node->insert(taken_node);
+                father_node->index_array[place_in_node - 1] = brother_node->index_array[1]; //max index
+                brother_node->remove(taken_node->key);
+            }
+        }
+        else // combining children
+        {
+            assert(brother_node->length == 2);
+            tree_node<KEY, DATA> *lonly_child = unbalnced_node->children_array[0];
+            father_node->remove(unbalnced_node->key);
+            brother_node->insert(lonly_child);
+            delete unbalnced_node;
+        }
+    }
+    template <class KEY, class DATA>
+    void Tree<KEY, DATA>::remove(KEY key)
+    {
+        tree_node<KEY, DATA> *node = find_node(key, root_ptr);
+        if (node == nullptr)
+        {
+            return;
+        }
+        remove_node_by_ptr(node, root_ptr);
     }
 
 } // namespace DS
