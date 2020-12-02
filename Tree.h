@@ -261,7 +261,6 @@ namespace DS
                 {
                     assert((i==2) || (i==3));
                     balnce_node(child_node,father_node->children_array[i-1],father_node);
-uioujo
                 }
              }
         }
