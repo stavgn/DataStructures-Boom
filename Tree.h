@@ -16,6 +16,7 @@ namespace DS
         bool insert_node_by_ptr(tree_node<KEY, DATA> *node, tree_node<KEY, DATA> *father_node);
         void remove_node_by_ptr(tree_node<KEY, DATA> *node, tree_node<KEY, DATA> *father_node);
         void balnce_node(tree_node<KEY, DATA> *unbalnced_node, tree_node<KEY, DATA> *brother_node, tree_node<KEY, DATA> *father_node, int place_in_node);
+        void destroy_by_ptr(tree_node<KEY, DATA> *father_node);
 
     public:
         Tree();
@@ -34,6 +35,11 @@ namespace DS
     template <class KEY, class DATA>
     Tree<KEY, DATA>::~Tree()
     {
+        // if(root_ptr == nullptr)
+        // {
+        //     return;
+        // }
+        // if()
     }
 
     template <class KEY, class DATA>
@@ -341,6 +347,11 @@ namespace DS
     {
         return max_leaf;
     }
+
+    template <class KEY, class DATA>
+    void Tree<KEY, DATA>::destroy_by_ptr(tree_node<KEY, DATA> *father_node)
+    {}
+
 
 } // namespace DS
 
