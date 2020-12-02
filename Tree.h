@@ -23,7 +23,7 @@ namespace DS
         bool insert(KEY key, DATA *data);
         void remove(KEY key);
         DATA *find(KEY key);
-        void traverse_print();
+        tree_node<KEY, DATA> *get_anchor();
     };
 
     template <class KEY, class DATA>
@@ -334,6 +334,12 @@ namespace DS
             return;
         }
         remove_node_by_ptr(node, root_ptr);
+    }
+
+    template <class KEY, class DATA>
+    tree_node<KEY, DATA>* Tree<KEY, DATA>::get_anchor()
+    {
+        return max_leaf;
     }
 
 } // namespace DS
