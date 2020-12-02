@@ -5,7 +5,7 @@ using namespace DS;
 
 void *Init()
 {
-    return &Boom();
+    return  ((void*)new Boom());
 }
 
 StatusType AddCourse(void *DS, int courseID, int numOfClasses)

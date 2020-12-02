@@ -5,7 +5,7 @@ using namespace std;
 
 Exception::Exception(std::string desc, StatusType type) : desc(desc)
 {
-    type = type;
+    type_data = type;
 }
 std::string Exception::what()
 {
@@ -14,5 +14,5 @@ std::string Exception::what()
 
 StatusType Exception::type()
 {
-    return type;
+    return type_data;
 }

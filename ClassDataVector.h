@@ -1,7 +1,7 @@
 #ifndef ClassData_H
 #define ClassData_H
 
-#include "./Vector.h";
+#include "./Vector.h"
 
 namespace DS
 {
@@ -10,9 +10,14 @@ namespace DS
     private:
         /* data */
     public:
-        ClassData(int course, int classNum, int watchTime);
+        ClassData(int course = 0, int classNum = 0, int watchTime = 0);
         ~ClassData() = default;
         bool operator<(const ClassData &dv);
+        bool operator<=(const ClassData &dv);
+        bool operator>(const ClassData &dv);
+        bool operator>=(const ClassData &dv);
+        bool operator==(const ClassData &dv);
+        bool operator!=(const ClassData &dv);
     };
 
 } // namespace DS
