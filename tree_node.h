@@ -51,7 +51,7 @@ namespace DS
     {
         assert(length < 4);
         int place_in_node;
-        for (int place_in_node = 0; place_in_node < length; place_in_node++)
+        for (place_in_node = 0; place_in_node < length; place_in_node++)
         {
             if (node->key < children_array[place_in_node]->key)
             {
@@ -63,6 +63,7 @@ namespace DS
                         index_array[i - 1] = children_array[i]->key;
                     }
                 }
+                break;
             }
         }
         children_array[place_in_node] = node;

@@ -163,7 +163,6 @@ namespace DS
                 young_brother_node->right_ptr = node;
                 node->left_ptr = young_brother_node;
             }
-            return true;
         }
 
         else if (!is_leaf(father_node->children_array[0]))
@@ -191,6 +190,24 @@ namespace DS
                 return true;
             }
         }
+        if (root_ptr->length == 4)
+        {
+            tree_node<KEY, DATA> *new_splited_node = new tree_node<KEY, DATA>(root_ptr->index_array[2]);
+            new_splited_node->children_array[0] = root_ptr->children_array[2];
+            new_splited_node->children_array[1] = root_ptr->children_array[3];
+            new_splited_node->length = 2;
+
+            root_ptr->children_array[2] = root_ptr->children_array[3] = nullptr;
+            root_ptr->length = 2;
+
+            tree_node<KEY, DATA> *new_root = new tree_node<KEY, DATA>(root_ptr->index_array[1]);
+            new_root->children_array[0] = root_ptr;
+            new_root->children_array[1] = new_splited_node;
+            new_root->length = 2;
+            root_ptr = new_root;
+            return true;
+        }
+        return true;
     }
     template <class KEY, class DATA>
     bool Tree<KEY, DATA>::insert(KEY key, DATA *data)
@@ -208,7 +225,7 @@ namespace DS
     void Tree<KEY, DATA>::remove_node_by_ptr(tree_node<KEY, DATA> *node, tree_node<KEY, DATA> *father_node)
     {
         assert(node != nullptr);
-        if (find_node(node, root_ptr) == nullptr)
+        if (find_node(node->key, root_ptr) == nullptr)
         {
             return;
         }
@@ -231,9 +248,9 @@ namespace DS
             }
             else if (node->right_ptr == nullptr) //That means node is the bigest leaf
             {
-                assert(node->leaft_ptr != nullptr);
+                assert(node->left_ptr != nullptr);
                 assert(node = max_leaf);
-                node->leaft_ptr->right_ptr = nullptr;
+                node->left_ptr->right_ptr = nullptr;
             }
             else
             {
@@ -284,7 +301,7 @@ namespace DS
         if (brother_node->length == 3) // taking from a brother
         {
             tree_node<KEY, DATA> *taken_node;
-            if (unbalnced_node->key < brother_node) // older brother
+            if (unbalnced_node->key < brother_node->key) // older brother
             {
                 taken_node = brother_node->children_array[0];
                 unbalnced_node->insert(taken_node);
