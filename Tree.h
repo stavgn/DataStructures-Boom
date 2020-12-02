@@ -39,7 +39,8 @@ namespace DS
     template <class KEY, class DATA>
     bool Tree<KEY, DATA>::is_leaf(tree_node<KEY, DATA> *node)
     {
-        return ((node->children_array[0] == nullptr) && (assert(node->length == 0)));
+        // assert(node->length == 0);
+        return (node->children_array[0] == nullptr);
     }
 
     template <class KEY, class DATA>

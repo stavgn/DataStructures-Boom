@@ -13,8 +13,8 @@ namespace DS
         const int children_array_size = 4;
         /* data */
     public:
-        KEY key;                                 //in case of leaf
         KEY index_array[3];                      //in case of node
+        KEY key = &index_array[0];               //in case of leaf
         tree_node<KEY, DATA> *children_array[4]; //in case of node
         DATA *data_ptr;                          //in case of leaf
         int length;
@@ -37,7 +37,7 @@ namespace DS
                                                right_ptr(nullptr)
     {
         key = (key);
-        index_array[0] = &this.key;
+        // index_array[0] = &this->key;
         length = (0);
     }
     template <class KEY, class DATA>
