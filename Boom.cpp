@@ -1,6 +1,7 @@
 #include "./Boom.h"
 #include "./Vector.h"
 #include "./ClassDataVector.h"
+#include "./Exception.h"
 
 using namespace DS;
 
@@ -10,8 +11,15 @@ Boom::Boom() : classes(Tree<ClassData, ClassData>()), courses(Tree<int, Vector>(
 
 StatusType Boom::AddCourse(int courseID, int numOfClasses)
 {
+    if (courses.find(courseID) == nullptr)
+    {
+        courses.insert(courseID, new Vector(numOfClasses));
+    }
+    else
+    {
+        throw Exception("invalid courseId", INVALID_INPUT);
+    }
 
-    courses.insert(courseID, Vector(numOfClasses));
     return SUCCESS;
 }
 
@@ -25,10 +33,10 @@ StatusType Boom::WatchClass(int courseID, int classID, int time)
 {
     Vector v = *courses.find(courseID);
     ClassData prev_record = ClassData(courseID, classID, v[classID - 1]);
-    ClassData next_record = ClassData(courseID, classID, v[classID - 1] + time);
+    ClassData *next_record = new ClassData(courseID, classID, v[classID - 1] + time);
     v[classID - 1] += time;
     classes.remove(prev_record);
-    classes.insert(next_record, next_record);
+    classes.insert(*next_record, next_record);
 
     return SUCCESS;
 }
