@@ -119,6 +119,7 @@ namespace DS
             new_father->children_array[0] = min_node;
             new_father->children_array[1] = max_node;
             new_father->length = 2;
+            root_ptr = new_father;
             return true;
         }
 

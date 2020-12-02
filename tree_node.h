@@ -14,7 +14,7 @@ namespace DS
         /* data */
     public:
         KEY index_array[3];                      //in case of node
-        KEY key = &index_array[0];               //in case of leaf
+        KEY &key;                                //in case of leaf
         tree_node<KEY, DATA> *children_array[4]; //in case of node
         DATA *data_ptr;                          //in case of leaf
         int length;
@@ -34,9 +34,10 @@ namespace DS
                                                                nullptr}),
                                                data_ptr(nullptr),
                                                left_ptr(nullptr),
-                                               right_ptr(nullptr)
+                                               right_ptr(nullptr),
+                                               key(index_array[0])
     {
-        key = (key);
+        this->key = (key);
         // index_array[0] = &this->key;
         length = (0);
     }
@@ -59,7 +60,7 @@ namespace DS
                     children_array[i] = children_array[i - 1];
                     if (i > place_in_node)
                     {
-                        index_array[i - 1] = children_array[i]->key[0];
+                        index_array[i - 1] = children_array[i]->key;
                     }
                 }
             }
