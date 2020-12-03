@@ -3,6 +3,8 @@
 
 #include "tree_node.h"
 #include <cassert>
+
+#include <iostream>
 namespace DS
 {
     template <class KEY, class DATA>
@@ -25,6 +27,9 @@ namespace DS
         void remove(KEY key);
         DATA *find(KEY key);
         tree_node<KEY, DATA> *get_anchor();
+        void printTree();
+        void treeClear();
+
     };
 
     template <class KEY, class DATA>
@@ -150,6 +155,7 @@ namespace DS
                 else
                 {
                     old_brother_node->left_ptr->right_ptr = node;
+                    node->left_ptr = old_brother_node->left_ptr;
                 }
 
                 old_brother_node->left_ptr = node;
@@ -167,6 +173,7 @@ namespace DS
                 else
                 {
                     young_brother_node->right_ptr->left_ptr = node;
+                    node->right_ptr = young_brother_node->right_ptr;
                 }
 
                 young_brother_node->right_ptr = node;
@@ -364,8 +371,30 @@ namespace DS
             {
                 destroy_by_ptr(father_node->children_array[i]);
             }
+                assert(father_node->length < 4);
                 delete father_node;
         }
+    }
+
+    template <class KEY, class DATA>
+    void Tree<KEY, DATA>::printTree()
+    {
+        for(tree_node<KEY,DATA> *p=max_leaf; p != nullptr ;p = p->left_ptr)
+    {
+            std::cout << *(p->data_ptr) << "   ";
+    }
+        std::cout << '\n';
+    }
+
+    template <class KEY, class DATA>
+    void Tree<KEY, DATA>::treeClear()
+    {
+        if(root_ptr == nullptr)
+        {
+            return;
+        }
+        destroy_by_ptr(root_ptr);
+        root_ptr = max_leaf = nullptr;
     }
 
 } // namespace DS

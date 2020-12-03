@@ -1,4 +1,5 @@
 .vscode/*
 build/*
 main.cpp
+tree_test.cpp
 CMakeLists.txt
