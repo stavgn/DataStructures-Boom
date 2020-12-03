@@ -44,6 +44,7 @@ namespace DS
     template <class KEY, class DATA>
     tree_node<KEY, DATA>::~tree_node()
     {
+        delete data_ptr;
     }
 
     template <class KEY, class DATA>
