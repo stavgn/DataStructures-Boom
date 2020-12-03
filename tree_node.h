@@ -94,7 +94,7 @@ namespace DS
         }
         children_array[length - 1] = nullptr;
         length -= 1;
-        assert(length >= 2);
+        // assert(length >= 2);
         return removen_node;
     }
 

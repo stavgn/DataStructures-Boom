@@ -231,10 +231,10 @@ namespace DS
     void Tree<KEY, DATA>::remove_node_by_ptr(tree_node<KEY, DATA> *node, tree_node<KEY, DATA> *father_node)
     {
         assert(node != nullptr);
-        if (find_node(node->key, root_ptr) == nullptr)
-        {
-            return;
-        }
+        // if (find_node(node->key, root_ptr) == nullptr)
+        // {
+        //     return;
+        // }
         if ((father_node == root_ptr) && (is_leaf(root_ptr)))
         {
             assert(root_ptr == node);
@@ -257,6 +257,7 @@ namespace DS
                 assert(node->left_ptr != nullptr);
                 assert(node = max_leaf);
                 node->left_ptr->right_ptr = nullptr;
+                max_leaf = node->left_ptr;
             }
             else
             {
@@ -265,9 +266,9 @@ namespace DS
             }
             delete node->data_ptr;
             delete node;
-            return;
+            
         }
-        if (!is_leaf(father_node->children_array[0]))
+        else if (!is_leaf(father_node->children_array[0]))
         {
             int i;
             for (i = 0; ((i < father_node->length - 1) && !(node->key < father_node->index_array[i])); i++)
@@ -284,7 +285,7 @@ namespace DS
                 }
                 else
                 {
-                    assert((i == 2) || (i == 3));
+                    assert((i == 1) || (i == 2));
                     balnce_node(child_node, father_node->children_array[i - 1], father_node, i);
                 }
             }
