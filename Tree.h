@@ -202,7 +202,8 @@ namespace DS
                 child_node->children_array[2] = child_node->children_array[3] = nullptr;
                 child_node->length = 2;
 
-                father_node->insert(new_splited_node);
+                int place_inserted =  father_node->insert(new_splited_node);
+                father_node->index_array[place_inserted - 1] = child_node->index_array[1];
                 return true;
             }
         }
