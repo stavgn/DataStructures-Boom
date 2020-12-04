@@ -1,11 +1,11 @@
-#include "library.h"
+#include "./library.h"
 #include "./Boom.h"
 
 using namespace DS;
 
 void *Init()
 {
-    return  ((void*)new Boom());
+    return ((void *)new Boom());
 }
 
 StatusType AddCourse(void *DS, int courseID, int numOfClasses)
@@ -35,4 +35,10 @@ StatusType GetMostViewedClasses(void *DS, int numOfClasses, int *courses, int *c
 {
     Boom boom = *static_cast<Boom *>(DS);
     return boom.GetMostViewedClasses(numOfClasses, courses, classes);
+}
+
+void Quit(void *DS)
+{
+    Boom boom = static_cast<Boom *>(DS);
+    delete boom;
 }

@@ -1,7 +1,6 @@
 
 
 # The following is required by CMake
-cmake_minimum_required(VERSION 3.0.0)
 # Set hw0 as the project name, C as the target language
 # A project can contain multiple build products
 project(wet_1)
