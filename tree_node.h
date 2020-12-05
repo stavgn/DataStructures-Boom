@@ -21,21 +21,21 @@ namespace DS
         tree_node<KEY, DATA> *left_ptr;  //in case of leaf
         tree_node<KEY, DATA> *right_ptr; //in case of leaf
 
-        tree_node(const KEY& key = KEY());
+        tree_node(const KEY &key = KEY());
         ~tree_node();
         int insert(tree_node<KEY, DATA> *node); //returns the place in the node of the new node
-        tree_node<KEY, DATA> *remove(const KEY& key);
+        tree_node<KEY, DATA> *remove(const KEY &key);
     };
 
     template <class KEY, class DATA>
-    tree_node<KEY, DATA>::tree_node(const KEY& key) : children_array({nullptr,
-                                                               nullptr,
-                                                               nullptr,
-                                                               nullptr}),
-                                               data_ptr(nullptr),
-                                               left_ptr(nullptr),
-                                               right_ptr(nullptr),
-                                               key(index_array[0])
+    tree_node<KEY, DATA>::tree_node(const KEY &key) : children_array({nullptr,
+                                                                      nullptr,
+                                                                      nullptr,
+                                                                      nullptr}),
+                                                      data_ptr(nullptr),
+                                                      left_ptr(nullptr),
+                                                      right_ptr(nullptr),
+                                                      key(index_array[0])
     {
         this->key = (key);
         // index_array[0] = &this->key;
@@ -72,12 +72,17 @@ namespace DS
         {
             index_array[place_in_node - 1] = node->key;
         }
+        else // place_in_node = 0
+        {
+            index_array[0] = children_array[1]->key;
+        }
+
         length += 1;
         assert(length <= 4);
         return place_in_node;
     }
     template <class KEY, class DATA>
-    tree_node<KEY, DATA> *tree_node<KEY, DATA>::remove(const KEY& key)
+    tree_node<KEY, DATA> *tree_node<KEY, DATA>::remove(const KEY &key)
     {
         assert(length > 1);
         int place_in_node;
@@ -92,10 +97,10 @@ namespace DS
         for (int i = place_in_node; i < length - 1; i++)
         {
             children_array[i] = children_array[i + 1];
-             if (i < length - 2)
-                    {
-                        index_array[i] = index_array[i + 1];
-                    }
+            if (i < length - 2)
+            {
+                index_array[i] = index_array[i + 1];
+            }
         }
         children_array[length - 1] = nullptr;
         length -= 1;
