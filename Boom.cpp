@@ -98,9 +98,8 @@ StatusType Boom::GetMostViewedClasses(int numOfClasses, int *courses_array, int 
         }
     }
 
-
     if (counter != 0)
     {
-        throw Exception(("numOfClasses is too big"), INVALID_INPUT);
+        throw Exception(("numOfClasses is too big"), FAILURE);
     }
 }
