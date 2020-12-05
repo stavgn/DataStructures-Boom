@@ -3,3 +3,4 @@ build/*
 main.cpp
 tree_test.cpp
 CMakeLists.txt
+main_for_testing.cpp
