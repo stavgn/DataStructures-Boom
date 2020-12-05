@@ -44,6 +44,7 @@ namespace DS
     template <class KEY, class DATA>
     tree_node<KEY, DATA>::~tree_node()
     {
+        delete data_ptr;
     }
 
     template <class KEY, class DATA>
@@ -94,7 +95,7 @@ namespace DS
         }
         children_array[length - 1] = nullptr;
         length -= 1;
-        assert(length >= 2);
+        // assert(length >= 2);
         return removen_node;
     }
 
