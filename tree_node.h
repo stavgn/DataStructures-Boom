@@ -61,7 +61,7 @@ namespace DS
                     children_array[i] = children_array[i - 1];
                     if (i > place_in_node)
                     {
-                        index_array[i - 1] = children_array[i]->key;
+                        index_array[i - 1] = index_array[i - 2];
                     }
                 }
                 break;
