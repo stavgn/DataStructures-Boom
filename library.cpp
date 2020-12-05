@@ -11,7 +11,7 @@ void *Init()
 StatusType AddCourse(void *DS, int courseID, int numOfClasses)
 {
 
-    if (DS == nullptr || numOfClasses <= 0 || courseId <= 0)
+    if (DS == nullptr || numOfClasses <= 0 || courseID <= 0)
     {
         return INVALID_INPUT;
     }
@@ -36,7 +36,7 @@ StatusType AddCourse(void *DS, int courseID, int numOfClasses)
 
 StatusType RemoveCourse(void *DS, int courseID)
 {
-    if (DS == nullptr || courseId <= 0)
+    if (DS == nullptr || courseID <= 0)
     {
         return INVALID_INPUT;
     }
@@ -61,7 +61,7 @@ StatusType RemoveCourse(void *DS, int courseID)
 
 StatusType WatchClass(void *DS, int courseID, int classID, int time)
 {
-    if (DS == nullptr || courseId <= 0 || classID < 0)
+    if (DS == nullptr || courseID <= 0 || classID < 0)
     {
         return INVALID_INPUT;
     }
@@ -110,7 +110,7 @@ StatusType TimeViewed(void *DS, int courseID, int classID, int *timeViewed)
 
 StatusType GetMostViewedClasses(void *DS, int numOfClasses, int *courses, int *classes)
 {
-    if (DS == nullptr || courseID <= 0 || classID < 0)
+    if (DS == nullptr || numOfClasses <= 0)
     {
         return INVALID_INPUT;
     }
@@ -136,9 +136,6 @@ StatusType GetMostViewedClasses(void *DS, int numOfClasses, int *courses, int *c
 void Quit(void **DS)
 {
     Boom *boom = static_cast<Boom *>(*DS);
-    if (boom == NULL)
-    {
-        return INVALID_INPUT;
-    }
     delete boom;
+    boom = nullptr;
 }

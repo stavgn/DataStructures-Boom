@@ -12,8 +12,9 @@ namespace DS
     {
     private:
         tree_node<KEY, DATA> *max_leaf;
+        tree_node<KEY, DATA> *min_leaf;
         tree_node<KEY, DATA> *root_ptr;
-        tree_node<KEY, DATA> *find_node(KEY key, tree_node<KEY, DATA> *father_node);
+        tree_node<KEY, DATA> *find_node(const KEY &key, tree_node<KEY, DATA> *father_node);
         bool is_leaf(tree_node<KEY, DATA> *node);
         bool insert_node_by_ptr(tree_node<KEY, DATA> *node, tree_node<KEY, DATA> *father_node);
         void remove_node_by_ptr(tree_node<KEY, DATA> *node, tree_node<KEY, DATA> *father_node);
@@ -23,17 +24,18 @@ namespace DS
     public:
         Tree();
         ~Tree();
-        bool insert(KEY key, DATA *data);
-        void remove(KEY key);
-        DATA *find(KEY key);
-        tree_node<KEY, DATA> *get_anchor();
+        bool insert(const KEY &key, DATA *data);
+        void remove(const KEY &key);
+        DATA *find(const KEY &key);
+        tree_node<KEY, DATA> *get_max_leaf();
+        tree_node<KEY, DATA> *get_min_leaf();
         void printTree();
         void treeClear();
 
     };
 
     template <class KEY, class DATA>
-    Tree<KEY, DATA>::Tree() : max_leaf(nullptr), root_ptr(nullptr)
+    Tree<KEY, DATA>::Tree() : max_leaf(nullptr), min_leaf(nullptr), root_ptr(nullptr)
     {
     }
 
@@ -58,7 +60,7 @@ namespace DS
     }
 
     template <class KEY, class DATA>
-    tree_node<KEY, DATA> *Tree<KEY, DATA>::find_node(KEY key, tree_node<KEY, DATA> *father_node)
+    tree_node<KEY, DATA> *Tree<KEY, DATA>::find_node(const KEY& key, tree_node<KEY, DATA> *father_node)
     {
         if (father_node == nullptr)
         {
@@ -83,7 +85,7 @@ namespace DS
     }
 
     template <class KEY, class DATA>
-    DATA *Tree<KEY, DATA>::find(KEY key)
+    DATA *Tree<KEY, DATA>::find(const KEY& key)
     {
         tree_node<KEY, DATA> *tmp_node = find_node(key, root_ptr);
         if (tmp_node == nullptr)
@@ -102,6 +104,7 @@ namespace DS
         {
             root_ptr = node;
             max_leaf = node;
+            min_leaf = node;
             return true;
         }
 
@@ -148,8 +151,10 @@ namespace DS
             {
                 tree_node<KEY, DATA> *old_brother_node = father_node->children_array[place_in_node + 1];
                 assert(old_brother_node != nullptr);
-                if (old_brother_node->left_ptr == nullptr)
+                if (old_brother_node->left_ptr == nullptr) //the new node is the smallest leaf now
                 {
+                    assert(old_brother_node == min_leaf);
+                    min_leaf = node;
                     node->left_ptr = nullptr;
                 }
                 else
@@ -227,7 +232,7 @@ namespace DS
         return true;
     }
     template <class KEY, class DATA>
-    bool Tree<KEY, DATA>::insert(KEY key, DATA *data)
+    bool Tree<KEY, DATA>::insert(const KEY& key, DATA *data)
     {
         tree_node<KEY, DATA> *new_node = new tree_node<KEY, DATA>(key);
         new_node->data_ptr = data;
@@ -250,7 +255,7 @@ namespace DS
         {
             assert(root_ptr == node);
             delete node;
-            root_ptr = max_leaf = nullptr;
+            root_ptr = max_leaf = min_leaf =nullptr;
             return;
         }
         if (is_leaf(father_node->children_array[0]))
@@ -269,12 +274,19 @@ namespace DS
                 node->left_ptr->right_ptr = nullptr;
                 max_leaf = node->left_ptr;
             }
+            else if (node->left_ptr == nullptr) //That means node is the smallest leaf
+            {
+                assert(node->right_ptr != nullptr);
+                assert(node = min_leaf);
+                node->right_ptr->left_ptr = nullptr;
+                min_leaf = node->right_ptr;
+            }
             else
             {
                 node->left_ptr->right_ptr = node->right_ptr;
                 node->right_ptr->left_ptr = node->left_ptr;
             }
-            node->data_ptr;
+            // node->data_ptr;
             delete node;
         }
         else if (!is_leaf(father_node->children_array[0]))
@@ -342,7 +354,7 @@ namespace DS
         }
     }
     template <class KEY, class DATA>
-    void Tree<KEY, DATA>::remove(KEY key)
+    void Tree<KEY, DATA>::remove(const KEY& key)
     {
         tree_node<KEY, DATA> *node = find_node(key, root_ptr);
         if (node == nullptr)
@@ -353,9 +365,14 @@ namespace DS
     }
 
     template <class KEY, class DATA>
-    tree_node<KEY, DATA> *Tree<KEY, DATA>::get_anchor()
+    tree_node<KEY, DATA> *Tree<KEY, DATA>::get_max_leaf()
     {
         return max_leaf;
+    }
+    template <class KEY, class DATA>
+    tree_node<KEY, DATA> *Tree<KEY, DATA>::get_min_leaf()
+    {
+        return min_leaf;
     }
 
     template <class KEY, class DATA>
@@ -395,7 +412,7 @@ namespace DS
             return;
         }
         destroy_by_ptr(root_ptr);
-        root_ptr = max_leaf = nullptr;
+        root_ptr = max_leaf = min_leaf =  nullptr;
     }
 
 } // namespace DS
