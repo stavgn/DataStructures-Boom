@@ -56,32 +56,32 @@ StatusType Boom::TimeViewed(int courseID, int classID, int *timeViewed)
     return SUCCESS;
 }
 
-StatusType Boom::GetMostViewedClasses(int numOfClasses, int *courses, int *classes)
+StatusType Boom::GetMostViewedClasses(int numOfClasses, int *courses_array, int *classes_array)
 {
     int counter = numOfClasses;
-    tree_node node = classes.get_anchor();
+    tree_node<ClassData, ClassData> *node = classes.get_anchor();
     while (counter > 0)
     {
-        ClassData data = *node.data_ptr;
-        courses[counter - 1] = data[0];
-        courses[counter - 1] = data[1];
+        ClassData data = *(node->data_ptr);
+        classes_array[counter - 1] = data[0];
+        courses_array[counter - 1] = data[1];
         counter--;
-        node = *node.left_ptr;
-        if (*node == nullptr)
+        node = node->left_ptr;
+        if (node == nullptr)
         {
             break;
         }
     }
 
-    tree_node courses_node = courses.get_anchor();
+    tree_node<int, Vector> *courses_node = courses.get_anchor();
     while (counter > 0)
     {
-        ClassData data = *courses_node.data_ptr;
-        courses[counter - 1] = data[0];
-        courses[counter - 1] = data[1];
-        courses_node = *node.left_ptr;
+        ClassData data = *(courses->node.data_ptr);
+        classes_array[counter - 1] = data[0];
+        courses_array[counter - 1] = data[1];
+        courses_node = node->left_ptr;
         counter--;
-        if (*node == nullptr)
+        if (node == nullptr)
         {
             break;
         }
@@ -89,6 +89,6 @@ StatusType Boom::GetMostViewedClasses(int numOfClasses, int *courses, int *class
 
     if (counter != 0)
     {
-        throw Exception("numOfClasses is too big, INVALID_INPUT);
+        throw Exception(("numOfClasses is too big"), INVALID_INPUT);
     }
 }

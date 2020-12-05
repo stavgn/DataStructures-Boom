@@ -22,7 +22,7 @@ namespace DS
         StatusType RemoveCourse(int courseID);
         StatusType WatchClass(int courseID, int classID, int time);
         StatusType TimeViewed(int courseID, int classID, int *timeViewed);
-        StatusType GetMostViewedClasses(int numOfClasses, int *courses, int *classes);
+        StatusType GetMostViewedClasses(int numOfClasses, int *courses_array, int *classes_array);
     };
 
 } // namespace DS
