@@ -18,6 +18,9 @@ namespace DS
         bool operator>=(const ClassData &dv);
         bool operator==(const ClassData &dv);
         bool operator!=(const ClassData &dv);
+        int course();
+        int classNum();
+        int time();
     };
 
 } // namespace DS
