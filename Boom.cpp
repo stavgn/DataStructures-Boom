@@ -76,16 +76,28 @@ StatusType Boom::GetMostViewedClasses(int numOfClasses, int *courses_array, int 
     tree_node<int, Vector> *courses_node = courses.get_anchor();
     while (counter > 0)
     {
-        ClassData data = *(courses->node.data_ptr);
-        classes_array[counter - 1] = data[0];
-        courses_array[counter - 1] = data[1];
-        courses_node = node->left_ptr;
-        counter--;
-        if (node == nullptr)
+        Vector data = *(courses_node->data_ptr);
+        int courseId = courses_node->key;
+        for (int i = 0; i < data.size; i++)
+        {
+            if (data[i] == 0)
+            {
+                courses_array[counter - 1] = courseId;
+                classes_array[counter - 1] = i;
+                counter--;
+                if (counter == 0)
+                {
+                    break;
+                }
+            }
+        }
+        courses_node = courses_node->left_ptr;
+        if (courses_node == nullptr)
         {
             break;
         }
     }
+
 
     if (counter != 0)
     {

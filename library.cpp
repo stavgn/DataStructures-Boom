@@ -37,8 +37,8 @@ StatusType GetMostViewedClasses(void *DS, int numOfClasses, int *courses, int *c
     return boom.GetMostViewedClasses(numOfClasses, courses, classes);
 }
 
-void Quit(void *DS)
+void Quit(void **DS)
 {
-    Boom *boom = static_cast<Boom *>(DS);
+    Boom *boom = static_cast<Boom *>(*DS);
     delete boom;
 }
