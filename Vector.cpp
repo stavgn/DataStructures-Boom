@@ -27,5 +27,5 @@ int &Vector::operator[](int i)
 
 Vector::~Vector()
 {
-    delete data;
+    delete[] data;
 }

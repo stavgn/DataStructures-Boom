@@ -120,6 +120,7 @@ namespace DS
             tree_node<KEY, DATA> *min_node;
             if (node->key < root_ptr->key)
             {
+                min_leaf = node;
                 min_node = node;
                 max_node = root_ptr;
             }
