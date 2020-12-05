@@ -3,6 +3,8 @@
 
 #include "tree_node.h"
 #include <cassert>
+
+#include <iostream>
 namespace DS
 {
     template <class KEY, class DATA>
@@ -25,6 +27,9 @@ namespace DS
         void remove(KEY key);
         DATA *find(KEY key);
         tree_node<KEY, DATA> *get_anchor();
+        void printTree();
+        void treeClear();
+
     };
 
     template <class KEY, class DATA>
@@ -35,11 +40,14 @@ namespace DS
     template <class KEY, class DATA>
     Tree<KEY, DATA>::~Tree()
     {
-        // if(root_ptr == nullptr)
-        // {
-        //     return;
-        // }
-        // if()
+        if(root_ptr == nullptr)
+        {
+            return;
+        }
+        else 
+        {
+            destroy_by_ptr(root_ptr);
+        }
     }
 
     template <class KEY, class DATA>
@@ -147,6 +155,7 @@ namespace DS
                 else
                 {
                     old_brother_node->left_ptr->right_ptr = node;
+                    node->left_ptr = old_brother_node->left_ptr;
                 }
 
                 old_brother_node->left_ptr = node;
@@ -164,6 +173,7 @@ namespace DS
                 else
                 {
                     young_brother_node->right_ptr->left_ptr = node;
+                    node->right_ptr = young_brother_node->right_ptr;
                 }
 
                 young_brother_node->right_ptr = node;
@@ -192,7 +202,8 @@ namespace DS
                 child_node->children_array[2] = child_node->children_array[3] = nullptr;
                 child_node->length = 2;
 
-                father_node->insert(new_splited_node);
+                int place_inserted =  father_node->insert(new_splited_node);
+                father_node->index_array[place_inserted - 1] = child_node->index_array[1];
                 return true;
             }
         }
@@ -231,14 +242,13 @@ namespace DS
     void Tree<KEY, DATA>::remove_node_by_ptr(tree_node<KEY, DATA> *node, tree_node<KEY, DATA> *father_node)
     {
         assert(node != nullptr);
-        if (find_node(node->key, root_ptr) == nullptr)
-        {
-            return;
-        }
+        // if (find_node(node->key, root_ptr) == nullptr)
+        // {
+        //     return;
+        // }
         if ((father_node == root_ptr) && (is_leaf(root_ptr)))
         {
             assert(root_ptr == node);
-            delete node->data_ptr;
             delete node;
             root_ptr = max_leaf = nullptr;
             return;
@@ -257,17 +267,17 @@ namespace DS
                 assert(node->left_ptr != nullptr);
                 assert(node = max_leaf);
                 node->left_ptr->right_ptr = nullptr;
+                max_leaf = node->left_ptr;
             }
             else
             {
                 node->left_ptr->right_ptr = node->right_ptr;
                 node->right_ptr->left_ptr = node->left_ptr;
             }
-            delete node->data_ptr;
+            node->data_ptr;
             delete node;
-            return;
         }
-        if (!is_leaf(father_node->children_array[0]))
+        else if (!is_leaf(father_node->children_array[0]))
         {
             int i;
             for (i = 0; ((i < father_node->length - 1) && !(node->key < father_node->index_array[i])); i++)
@@ -284,7 +294,7 @@ namespace DS
                 }
                 else
                 {
-                    assert((i == 2) || (i == 3));
+                    assert((i == 1) || (i == 2));
                     balnce_node(child_node, father_node->children_array[i - 1], father_node, i);
                 }
             }
@@ -343,15 +353,50 @@ namespace DS
     }
 
     template <class KEY, class DATA>
-    tree_node<KEY, DATA>* Tree<KEY, DATA>::get_anchor()
+    tree_node<KEY, DATA> *Tree<KEY, DATA>::get_anchor()
     {
         return max_leaf;
     }
 
     template <class KEY, class DATA>
     void Tree<KEY, DATA>::destroy_by_ptr(tree_node<KEY, DATA> *father_node)
-    {}
+    {
+        if (is_leaf(father_node))
+        {
+            delete father_node;
+            return;
+        }
+        else
+        {
+            for (int i = 0; i < father_node->length; i++)
+            {
+                destroy_by_ptr(father_node->children_array[i]);
+            }
+                assert(father_node->length < 4);
+                delete father_node;
+        }
+    }
 
+    template <class KEY, class DATA>
+    void Tree<KEY, DATA>::printTree()
+    {
+        for(tree_node<KEY,DATA> *p=max_leaf; p != nullptr ;p = p->left_ptr)
+    {
+            std::cout << *(p->data_ptr) << "   ";
+    }
+        std::cout << '\n';
+    }
+
+    template <class KEY, class DATA>
+    void Tree<KEY, DATA>::treeClear()
+    {
+        if(root_ptr == nullptr)
+        {
+            return;
+        }
+        destroy_by_ptr(root_ptr);
+        root_ptr = max_leaf = nullptr;
+    }
 
 } // namespace DS
 
