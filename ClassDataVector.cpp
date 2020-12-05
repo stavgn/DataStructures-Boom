@@ -9,22 +9,22 @@ ClassData::ClassData(int course, int classNum, int watchTime) : Vector(3)
     data[2] = watchTime;
 }
 
-int ClassData::course()
+int ClassData::course() const
 {
-    return data[0]
+    return data[0];
 }
 
-int ClassData::classNum()
+int ClassData::classNum() const
 {
-    return data[1]
+    return data[1];
 }
 
-int ClassData::time()
+int ClassData::time() const
 {
-    return data[2]
+    return data[2];
 }
 
-bool ClassData::operator<(const ClassData &dv)
+bool ClassData::operator<(const ClassData &dv) const
 {
     if (time() < dv.time())
     {
@@ -45,24 +45,24 @@ bool ClassData::operator<(const ClassData &dv)
     return false;
 }
 
-bool ClassData::operator<=(const ClassData &dv)
+bool ClassData::operator<=(const ClassData &dv) const
 {
-    return (this == dv) || (this < dv);
+    return (*this == dv) || (*this < dv);
 }
 
-bool ClassData::operator>(const ClassData &dv)
+bool ClassData::operator>(const ClassData &dv) const
 {
-    return !(this < dv);
+    return !(*this < dv);
 }
-bool ClassData::operator>=(const ClassData &dv)
+bool ClassData::operator>=(const ClassData &dv) const
 {
-    return (this == dv) || (this > dv);
+    return (*this == dv) || (*this > dv);
 }
-bool ClassData::operator==(const ClassData &dv)
+bool ClassData::operator==(const ClassData &dv) const
 {
-    return (time() == dv.time()) && (course() < dv.course()) && (classNum() == dv.classNum())
+    return (time() == dv.time()) && (course() < dv.course()) && (classNum() == dv.classNum());
 }
-bool ClassData::operator!=(const ClassData &dv)
+bool ClassData::operator!=(const ClassData &dv) const
 {
-    return !(this == dv);
+    return !(*this == dv);
 }
