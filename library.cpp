@@ -10,31 +10,86 @@ void *Init()
 
 StatusType AddCourse(void *DS, int courseID, int numOfClasses)
 {
-    Boom boom = *static_cast<Boom *>(DS);
-    return boom.AddCourse(courseID, numOfClasses);
+    try
+    {
+        Boom boom = *static_cast<Boom *>(DS);
+        return boom.AddCourse(courseID, numOfClasses);
+    }
+    catch (Exception &e)
+    {
+        return e.type();
+    }
+    catch (std::bad_alloc &ba)
+    {
+        return ALLOCATION_ERROR;
+    }
 }
 
 StatusType RemoveCourse(void *DS, int courseID)
 {
-    Boom boom = *static_cast<Boom *>(DS);
-    return boom.RemoveCourse(courseID);
+    try
+    {
+        Boom boom = *static_cast<Boom *>(DS);
+        return boom.RemoveCourse(courseID);
+    }
+    catch (Exception &e)
+    {
+        return e.type();
+    }
+    catch (std::bad_alloc &ba)
+    {
+        return ALLOCATION_ERROR;
+    }
 }
 
 StatusType WatchClass(void *DS, int courseID, int classID, int time)
 {
-    Boom boom = *static_cast<Boom *>(DS);
-    return boom.WatchClass(courseID, classID, time);
+    try
+    {
+        Boom boom = *static_cast<Boom *>(DS);
+        return boom.WatchClass(courseID, classID, time);
+    }
+    catch (Exception &e)
+    {
+        return e.type();
+    }
+    catch (std::bad_alloc &ba)
+    {
+        return ALLOCATION_ERROR;
+    }
 }
 StatusType TimeViewed(void *DS, int courseID, int classID, int *timeViewed)
 {
-    Boom boom = *static_cast<Boom *>(DS);
-    return boom.TimeViewed(courseID, classID, timeViewed);
+    try
+    {
+        Boom boom = *static_cast<Boom *>(DS);
+        return boom.TimeViewed(courseID, classID, timeViewed);
+    }
+    catch (Exception &e)
+    {
+        return e.type();
+    }
+    catch (std::bad_alloc &ba)
+    {
+        return ALLOCATION_ERROR;
+    }
 }
 
 StatusType GetMostViewedClasses(void *DS, int numOfClasses, int *courses, int *classes)
 {
-    Boom boom = *static_cast<Boom *>(DS);
-    return boom.GetMostViewedClasses(numOfClasses, courses, classes);
+    try
+    {
+        Boom boom = *static_cast<Boom *>(DS);
+        return boom.GetMostViewedClasses(numOfClasses, courses, classes);
+    }
+    catch (Exception &e)
+    {
+        return e.type();
+    }
+    catch (std::bad_alloc &ba)
+    {
+        return ALLOCATION_ERROR;
+    }
 }
 
 void Quit(void **DS)
