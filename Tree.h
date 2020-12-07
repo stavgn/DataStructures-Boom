@@ -349,6 +349,10 @@ namespace DS
         {
             assert(brother_node->length == 2);
             tree_node<KEY, DATA> *lonly_child = unbalnced_node->children_array[0];
+            if((place_in_node == 0) || (father_node->children_array[0] == brother_node)) //if it the first two node we need to fix the father's indexs
+            {
+                father_node->index_array[0] = father_node->index_array[1];
+            }
             father_node->remove(unbalnced_node->key);
             brother_node->insert(lonly_child);
             delete unbalnced_node;
@@ -400,6 +404,10 @@ namespace DS
     {
         for(tree_node<KEY,DATA> *p=max_leaf; p != nullptr ;p = p->left_ptr)
     {
+            if(p->right_ptr != nullptr)
+            {
+                assert(*(p->data_ptr) < *(p->right_ptr->data_ptr));
+            }
             std::cout << *(p->data_ptr) << "   ";
     }
         std::cout << '\n';
