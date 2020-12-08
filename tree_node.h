@@ -39,7 +39,7 @@ namespace DS
     {
         this->key = (key);
         // index_array[0] = &this->key;
-        length = (0);
+        length = (1);
     }
     template <class KEY, class DATA>
     tree_node<KEY, DATA>::~tree_node()

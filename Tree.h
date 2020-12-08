@@ -209,6 +209,7 @@ namespace DS
 
                 int place_inserted = father_node->insert(new_splited_node);
                 father_node->index_array[place_inserted - 1] = child_node->index_array[1];
+                assert(find(node->key) != nullptr);
                 return true;
             }
         }
@@ -227,8 +228,12 @@ namespace DS
             new_root->children_array[1] = new_splited_node;
             new_root->length = 2;
             root_ptr = new_root;
+            assert(find(node->key) != nullptr);
+
             return true;
         }
+        assert(find(node->key) != nullptr);
+
         return true;
     }
     template <class KEY, class DATA>
@@ -241,6 +246,7 @@ namespace DS
             delete new_node;
             return false;
         }
+        assert(find(key) != nullptr);
         return true;
     }
     template <class KEY, class DATA>
@@ -329,7 +335,7 @@ namespace DS
         if (brother_node->length == 3) // taking from a brother
         {
             tree_node<KEY, DATA> *taken_node;
-            if (unbalnced_node->key < brother_node->key) // older brother
+            if (place_in_node == 0) // older brother
             {
                 taken_node = brother_node->children_array[0];
                 unbalnced_node->insert(taken_node);
@@ -350,29 +356,31 @@ namespace DS
         {
             assert(brother_node->length == 2);
             tree_node<KEY, DATA> *lonly_child = unbalnced_node->children_array[0];
-            int new_place =  brother_node->insert(lonly_child);
-//fixing indexing 
+            int new_place = brother_node->insert(lonly_child);
+            //fixing indexing
             if ((place_in_node == 0)) // incase the lonly node is the youngest
             {
                 brother_node->index_array[0] = father_node->index_array[0];
-                 if(father_node->length){   
+                if (father_node->length)
+                {
                     father_node->index_array[0] = father_node->index_array[1];
                 }
             }
-            else if  (father_node->children_array[0] == brother_node) // incase the lonly node is the the middle child and combine with the youngest
+            else if (father_node->children_array[0] == brother_node) // incase the lonly node is the the middle child and combine with the youngest
             {
-                 brother_node->index_array[1] = father_node->index_array[0];
-                 if(father_node->length){   
+                brother_node->index_array[1] = father_node->index_array[0];
+                if (father_node->length)
+                {
                     father_node->index_array[0] = father_node->index_array[1];
                 }
-            } //if we got here this mean there is 3 children
-            else if  (father_node->children_array[2] == brother_node)  // incase the lonly node is the  middle child and combine with the eldest
+            }                                                        //if we got here this mean there is 3 children
+            else if (father_node->children_array[2] == brother_node) // incase the lonly node is the  middle child and combine with the eldest
             {
-                 brother_node->index_array[0] = father_node->index_array[1];
+                brother_node->index_array[0] = father_node->index_array[1];
             }
-            else if  (place_in_node == 2)  // incase the lonly node is the  eldest child and combine
+            else if (place_in_node == 2) // incase the lonly node is the  eldest child and combine
             {
-                 brother_node->index_array[1] = father_node->index_array[1];
+                brother_node->index_array[1] = father_node->index_array[1];
             }
             father_node->remove(unbalnced_node->key);
             delete unbalnced_node;
