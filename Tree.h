@@ -333,6 +333,7 @@ namespace DS
             {
                 taken_node = brother_node->children_array[0];
                 unbalnced_node->insert(taken_node);
+                unbalnced_node->index_array[0] = father_node->index_array[0];
                 father_node->index_array[0] = brother_node->index_array[0]; // casue we are in older brother case
                 brother_node->remove(taken_node->key);
             }
@@ -340,6 +341,7 @@ namespace DS
             {
                 taken_node = brother_node->children_array[2]; //max child
                 unbalnced_node->insert(taken_node);
+                unbalnced_node->index_array[0] = father_node->index_array[place_in_node - 1];
                 father_node->index_array[place_in_node - 1] = brother_node->index_array[1]; //max index
                 brother_node->remove(taken_node->key);
             }
@@ -353,12 +355,16 @@ namespace DS
             if ((place_in_node == 0)) // incase the lonly node is the youngest
             {
                 brother_node->index_array[0] = father_node->index_array[0];
-                father_node->index_array[0] = father_node->index_array[1];
+                 if(father_node->length){   
+                    father_node->index_array[0] = father_node->index_array[1];
+                }
             }
             else if  (father_node->children_array[0] == brother_node) // incase the lonly node is the the middle child and combine with the youngest
             {
                  brother_node->index_array[1] = father_node->index_array[0];
-                father_node->index_array[0] = father_node->index_array[1];
+                 if(father_node->length){   
+                    father_node->index_array[0] = father_node->index_array[1];
+                }
             } //if we got here this mean there is 3 children
             else if  (father_node->children_array[2] == brother_node)  // incase the lonly node is the  middle child and combine with the eldest
             {
@@ -418,6 +424,7 @@ namespace DS
     {
         for (tree_node<KEY, DATA> *p = max_leaf; p != nullptr; p = p->left_ptr)
         {
+            assert((find(p->key) != nullptr));
             if (p->right_ptr != nullptr)
             {
                 assert(*(p->data_ptr) < *(p->right_ptr->data_ptr));
