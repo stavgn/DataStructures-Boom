@@ -245,7 +245,7 @@ namespace DS
             delete new_node;
             return false;
         }
-        assert(find(key) != nullptr);
+        // assert(find(key) != nullptr);
         return true;
     }
     template <class KEY, class DATA>
@@ -442,7 +442,7 @@ namespace DS
             }
             std::cout << *(p->data_ptr) << "   ";
         }
-        std::cout << '\n';
+        // std::cout << '\n';
     }
 
     template <class KEY, class DATA>
