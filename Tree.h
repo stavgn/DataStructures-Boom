@@ -382,6 +382,7 @@ namespace DS
             {
                 brother_node->index_array[1] = father_node->index_array[1];
             }
+            unbalnced_node->key = -1;
             father_node->remove(unbalnced_node->key);
             delete unbalnced_node;
         }
