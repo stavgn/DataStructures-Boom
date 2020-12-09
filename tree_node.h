@@ -9,8 +9,6 @@ namespace DS
     class tree_node
     {
     private:
-        const int index_array_size = 3;
-        const int children_array_size = 4;
         /* data */
     public:
         KEY index_array[3];                      //in case of node

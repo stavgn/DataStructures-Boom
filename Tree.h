@@ -54,7 +54,6 @@ namespace DS
     template <class KEY, class DATA>
     bool Tree<KEY, DATA>::is_leaf(tree_node<KEY, DATA> *node)
     {
-        // assert(node->length == 0);
         return (node->children_array[0] == nullptr);
     }
 
@@ -210,7 +209,7 @@ namespace DS
                 int place_inserted = father_node->insert(new_splited_node);
                 father_node->index_array[place_inserted - 1] = child_node->index_array[1];
                 assert(find(node->key) != nullptr);
-                return true;
+                
             }
         }
         if (root_ptr->length == 4)
@@ -326,6 +325,7 @@ namespace DS
             root_ptr = child_node;
             return;
         }
+
     }
 
     template <class KEY, class DATA>
@@ -395,6 +395,8 @@ namespace DS
             return;
         }
         remove_node_by_ptr(node, root_ptr);
+        assert((root_ptr == nullptr) || (is_leaf(root_ptr)) || (root_ptr->length >= 2));
+
     }
 
     template <class KEY, class DATA>
