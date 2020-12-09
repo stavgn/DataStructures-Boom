@@ -24,6 +24,16 @@ int &Vector::operator[](int i)
     }
     return data[i];
 }
+Vector::Vector(const Vector &origin)
+{
+    size = origin.size;
+    data = new int[size];
+     for (int i = 0; i < size; i++)
+    {
+        data[i] = origin.data[i];
+    }
+}
+
 
 Vector::~Vector()
 {

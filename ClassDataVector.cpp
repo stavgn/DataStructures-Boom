@@ -9,6 +9,7 @@ ClassData::ClassData(int course, int classNum, int watchTime) : Vector(3)
     data[2] = watchTime;
 }
 
+
 int ClassData::course() const
 {
     return data[0];

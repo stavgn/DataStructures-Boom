@@ -208,7 +208,7 @@ namespace DS
 
                 int place_inserted = father_node->insert(new_splited_node);
                 father_node->index_array[place_inserted - 1] = child_node->index_array[1];
-                assert(find(node->key) != nullptr);
+                // assert(find(node->key) != nullptr);
                 
             }
         }
@@ -227,11 +227,11 @@ namespace DS
             new_root->children_array[1] = new_splited_node;
             new_root->length = 2;
             root_ptr = new_root;
-            assert(find(node->key) != nullptr);
+            // assert(find(node->key) != nullptr);
 
             return true;
         }
-        assert(find(node->key) != nullptr);
+        //  assert(find(node->key) != nullptr);
 
         return true;
     }

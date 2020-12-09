@@ -23,6 +23,7 @@ Import (DO NOT EDIT):
 ======================================================== """
 
 import os
+import sys
 import math
 import random
 
@@ -34,18 +35,18 @@ Set parameters (EDIT HERE):
 SHUFFLE_INTERNAL_COMMAND_ORDER = 1
 
 # Set max parameters for random.
-MAX_COURSE_ID = 1000000 
+MAX_COURSE_ID = 10000 
 MAX_CLASSES_IN_COURSE = 20 #Keep it low, or bad things will happen!!
-MAX_TIME_VIEWED = 50
+MAX_TIME_VIEWED = 500
 
 # Set parameters for size of test.
-NUMBER_OF_COURSES = 10000 #Don't go too wild, espcially if you're testing on the csl3 server.
+NUMBER_OF_COURSES = 1000 #Don't go too wild, espcially if you're testing on the csl3 server.
 
 # Set the directory to which you want to save the test files. 
 # If you want to use the current directory, leave a blank string ("").
 # Example for Windows directory: "C:\\Users\\USERNAME\\Technion\\Courses\\234218_Data_Structures_1\\HW\\Wet_1\\tests"
 # Example for Linux directory: "/home/USERNAME/ds1/wet1/tests"
-DIRECTORY = ""
+DIRECTORY = "/home/dor-hay.sha/data_structure/wet_1/tests"
 
 # Set names of test in and out files. Recommended format: "test.in" and "test.out"
 TEST_IN_NAME = "test.in"
@@ -190,6 +191,9 @@ def main():
     print("Generating Test Files...\n")
     writeTestFiles(courses,classes)
     print("Done generating Test Files.\n")
+
+    os.system("/home/dor-hay.sha/data_structure/wet_1/build/wet_1 < /home/dor-hay.sha/data_structure/wet_1/tests/test.in > /home/dor-hay.sha/data_structure/wet_1/out.txt")
+    os.system("diff /home/dor-hay.sha/data_structure/wet_1/out.txt /home/dor-hay.sha/data_structure/wet_1/tests/test.out")
 
 # =================
 # Run the program:

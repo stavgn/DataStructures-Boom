@@ -12,6 +12,7 @@ namespace DS
         int size;
         Vector(int size);
         ~Vector();
+        Vector (const Vector &origin);
         void insert(int i, int val);
         int &operator[](int);
     };

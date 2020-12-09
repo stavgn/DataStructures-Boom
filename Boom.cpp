@@ -41,10 +41,10 @@ StatusType Boom::WatchClass(int courseID, int classID, int time)
         Vector &v = *courses.find(courseID);
         ClassData prev_record = ClassData(courseID, classID, v[classID]);
         ClassData *next_record_key = new ClassData(courseID, classID, v[classID] + time);
-        ClassData *next_record_data = new ClassData(courseID, classID, v[classID] + time);
+        // ClassData *next_record_data = new ClassData(courseID, classID, v[classID] + time);
         v[classID] += time;
         classes.remove(prev_record);
-        classes.insert(*next_record_key, next_record_data);
+        classes.insert(*next_record_key, next_record_key);
     }
     else
     {
@@ -97,4 +97,5 @@ StatusType Boom::GetMostViewedClasses(int numOfClasses, int *courses_array, int 
     {
         throw Exception(("numOfClasses is too big"), FAILURE);
     }
+    return SUCCESS;
 }
