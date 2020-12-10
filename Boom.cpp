@@ -41,14 +41,13 @@ StatusType Boom::WatchClass(int courseID, int classID, int time)
         Vector &v = *courses.find(courseID);
         ClassData prev_record = ClassData(courseID, classID, v[classID]);
         ClassData *next_record_key = new ClassData(courseID, classID, v[classID] + time);
-        // ClassData *next_record_data = new ClassData(courseID, classID, v[classID] + time);
         v[classID] += time;
         classes.remove(prev_record);
         classes.insert(*next_record_key, next_record_key);
     }
     else
     {
-        throw Exception("invalid courseId", INVALID_INPUT);
+        throw Exception("course wasn't found", FAILURE);
     }
 
     return SUCCESS;

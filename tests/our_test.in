@@ -1,0 +1,49 @@
+Init
+AddCourse 1 5
+AddCourse 1 5
+AddCourse 324694 0
+AddCourse 324694 -1
+AddCourse 0 3
+AddCourse -1 3
+AddCourse 0 0
+AddCourse -1 -1
+AddCourse -1 10
+RemoveCourse 324694
+RemoveCourse 1
+RemoveCourse 1
+RemoveCourse 0
+RemoveCourse -1
+WatchClass 234218 2 10
+AddCourse 1 5
+WatchClass 1 2 10
+WatchClass 1 2 10
+WatchClass 1 2 -10
+WatchClass 1 2 0
+WatchClass 1 -2 0
+WatchClass 1 -2 0
+WatchClass 0 1 0
+WatchClass -1 1 0
+WatchClass 1 1 4
+WatchClass 1 1 5
+WatchClass 1 1 6
+WatchClass 1 1 7
+WatchClass 1 4 1 
+WatchClass 1 5 1 
+WatchClass 1 6 1 
+WatchClass 1 7 1 
+WatchClass 108 7 1 
+TimeViewed 1 2
+TimeViewed 1 -2
+TimeViewed 1 0
+TimeViewed 0 0
+TimeViewed -1 0
+TimeViewed 1 4
+TimeViewed 1 5
+TimeViewed 1 6
+GetMostViewedClasses -1
+GetMostViewedClasses 0
+GetMostViewedClasses 1
+GetMostViewedClasses 5
+GetMostViewedClasses 6
+GetMostViewedClasses 6
+Quit

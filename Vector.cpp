@@ -20,7 +20,7 @@ int &Vector::operator[](int i)
 {
     if (i >= size)
     {
-        throw Exception("i is greater then the size of the vector", FAILURE);
+        throw Exception("i is greater then the size of the vector", INVALID_INPUT);
     }
     return data[i];
 }
