@@ -8,6 +8,13 @@ ClassData::ClassData(int course, int classNum, int watchTime) : Vector(3)
     data[1] = classNum;
     data[2] = watchTime;
 }
+ClassData& ClassData::operator=(const ClassData& origin)
+{
+    data[0] = origin.data[0];
+    data[1] = origin.data[1];
+    data[2] = origin.data[2];
+    return *this;
+}
 
 int ClassData::course() const
 {

@@ -11,6 +11,8 @@ namespace DS
         /* data */
     public:
         ClassData(int course = 0, int classNum = 0, int watchTime = 0);
+        ClassData(const ClassData& origin) : Vector(origin) {}
+        ClassData& operator=(const ClassData& origin);
         ~ClassData() = default;
         bool operator<(const ClassData &dv) const;
         bool operator<=(const ClassData &dv) const;
