@@ -33,6 +33,17 @@ Vector::Vector(const Vector &origin)
         data[i] = origin.data[i];
     }
 }
+Vector& Vector::operator=(const Vector &origin)
+{
+    delete[] data;
+    size = origin.size;
+    data = new int[size];
+     for (int i = 0; i < size; i++)
+    {
+        data[i] = origin.data[i];
+    }
+    return *this;
+}
 
 
 Vector::~Vector()

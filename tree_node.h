@@ -26,17 +26,14 @@ namespace DS
     };
 
     template <class KEY, class DATA>
-    tree_node<KEY, DATA>::tree_node(const KEY &inserted_key) : children_array({nullptr,
-                                                                      nullptr,
-                                                                      nullptr,
-                                                                      nullptr}),
-                                                      data_ptr(nullptr),
-                                                      left_ptr(nullptr),
-                                                      right_ptr(nullptr),
-                                                      index_array({inserted_key,KEY(),KEY()})
+    tree_node<KEY, DATA>::tree_node(const KEY &inserted_key)
 
     {
-
+        children_array[0] =children_array[1] = children_array[2] = children_array[3] = nullptr;
+        data_ptr = nullptr;
+        left_ptr = nullptr;
+        right_ptr = nullptr;
+        index_array[0] = inserted_key;
         // index_array[0] = &this->key;
         length = (1);
     }

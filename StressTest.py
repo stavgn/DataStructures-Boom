@@ -40,7 +40,7 @@ MAX_CLASSES_IN_COURSE = 20 #Keep it low, or bad things will happen!!
 MAX_TIME_VIEWED = 500
 
 # Set parameters for size of test.
-NUMBER_OF_COURSES = 1000 #Don't go too wild, espcially if you're testing on the csl3 server.
+NUMBER_OF_COURSES = 100 #Don't go too wild, espcially if you're testing on the csl3 server.
 
 # Set the directory to which you want to save the test files. 
 # If you want to use the current directory, leave a blank string ("").
