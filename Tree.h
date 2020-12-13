@@ -267,25 +267,21 @@ namespace DS
         {
             tree_node<KEY, DATA> *removen_node = father_node->remove(node->key);
             assert(removen_node != nullptr);
-            if (node->left_ptr == nullptr)
+            if (node->left_ptr == nullptr) //That means node is the smallest leaf
             {
                 assert(node->right_ptr != nullptr);
+                assert(node == min_leaf);
                 node->right_ptr->left_ptr = nullptr;
+                min_leaf = node->right_ptr;
             }
             else if (node->right_ptr == nullptr) //That means node is the bigest leaf
             {
                 assert(node->left_ptr != nullptr);
-                assert(node = max_leaf);
+                assert(node == max_leaf);
                 node->left_ptr->right_ptr = nullptr;
                 max_leaf = node->left_ptr;
             }
-            else if (node->left_ptr == nullptr) //That means node is the smallest leaf
-            {
-                assert(node->right_ptr != nullptr);
-                assert(node = min_leaf);
-                node->right_ptr->left_ptr = nullptr;
-                min_leaf = node->right_ptr;
-            }
+        
             else
             {
                 node->left_ptr->right_ptr = node->right_ptr;

@@ -34,7 +34,8 @@ namespace DS
         left_ptr = nullptr;
         right_ptr = nullptr;
         index_array[0] = inserted_key;
-        // index_array[0] = &this->key;
+        index_array[1] = KEY();
+        index_array[2] = KEY();
         length = (1);
     }
     template <class KEY, class DATA>

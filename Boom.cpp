@@ -30,6 +30,13 @@ StatusType Boom::RemoveCourse(int courseID)
     {
         throw Exception("Course was not found", FAILURE);
     }
+    Vector &v = *courses.find(courseID);
+    for (int i = 0; i < v.size; i++) {
+         if (v[i] != 0) {
+            ClassData key = ClassData(courseID, i, v[i]);
+            classes.remove(key);
+         }
+    }
     courses.remove(courseID);
     return SUCCESS;
 }
@@ -55,6 +62,10 @@ StatusType Boom::WatchClass(int courseID, int classID, int time)
 
 StatusType Boom::TimeViewed(int courseID, int classID, int *timeViewed)
 {
+    if(courses.find(courseID) == nullptr)
+    {
+        throw Exception("course was'nt found", FAILURE);
+    }
     Vector &v = *courses.find(courseID);
     *timeViewed = v[classID];
     return SUCCESS;

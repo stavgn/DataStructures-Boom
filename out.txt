@@ -1,36 +1,95 @@
 init done.
+AddCourse: INVALID_INPUT
+AddCourse: INVALID_INPUT
+AddCourse: INVALID_INPUT
+AddCourse: INVALID_INPUT
+RemoveCourse: FAILURE
+AddCourse: INVALID_INPUT
+AddCourse: INVALID_INPUT
+AddCourse: INVALID_INPUT
 AddCourse: SUCCESS
-WatchClass: SUCCESS
-WatchClass: SUCCESS
-WatchClass: INVALID_INPUT
-WatchClass: INVALID_INPUT
-WatchClass: INVALID_INPUT
-WatchClass: INVALID_INPUT
-WatchClass: INVALID_INPUT
-WatchClass: INVALID_INPUT
-WatchClass: SUCCESS
-WatchClass: SUCCESS
-WatchClass: SUCCESS
-WatchClass: SUCCESS
-WatchClass: SUCCESS
-WatchClass: SUCCESS
-WatchClass: INVALID_INPUT
-WatchClass: INVALID_INPUT
-WatchClass: INVALID_INPUT
-WatchClass: INVALID_INPUT
-WatchClass: INVALID_INPUT
-WatchClass: INVALID_INPUT
-WatchClass: SUCCESS
-WatchClass: SUCCESS
+RemoveCourse: FAILURE
+AddCourse: SUCCESS
+AddCourse: INVALID_INPUT
+AddCourse: INVALID_INPUT
+AddCourse: INVALID_INPUT
+RemoveCourse: FAILURE
+AddCourse: FAILURE
+AddCourse: INVALID_INPUT
+AddCourse: INVALID_INPUT
+AddCourse: INVALID_INPUT
+RemoveCourse: FAILURE
+AddCourse: SUCCESS
+AddCourse: SUCCESS
+AddCourse: SUCCESS
+AddCourse: SUCCESS
+RemoveCourse: FAILURE
+AddCourse: INVALID_INPUT
+AddCourse: SUCCESS
+AddCourse: SUCCESS
+AddCourse: SUCCESS
+RemoveCourse: SUCCESS
+AddCourse: FAILURE
+AddCourse: FAILURE
+AddCourse: FAILURE
+AddCourse: SUCCESS
+RemoveCourse: INVALID_INPUT
+AddCourse: INVALID_INPUT
+AddCourse: FAILURE
+AddCourse: SUCCESS
+AddCourse: SUCCESS
+RemoveCourse: SUCCESS
+GetMostViewedClasses: SUCCESS
+Course	|	Class
+12	|	0
+12	|	1
+12	|	2
+12	|	3
+12	|	4
+12	|	5
+12	|	6
+12	|	7
+12	|	8
+--End of most viewed classes--
+GetMostViewedClasses: SUCCESS
+Course	|	Class
+12	|	0
+12	|	1
+12	|	2
+12	|	3
+12	|	4
+12	|	5
+12	|	6
+12	|	7
+12	|	8
+12	|	9
+12	|	10
+12	|	11
+12	|	12
+12	|	13
+12	|	14
+12	|	15
+12	|	16
+--End of most viewed classes--
 WatchClass: SUCCESS
 WatchClass: SUCCESS
 WatchClass: SUCCESS
 GetMostViewedClasses: SUCCESS
 Course	|	Class
-1	|	1
-1	|	2
-1	|	4
-1	|	0
-1	|	3
+104022	|	14
+104095	|	28
+15	|	14
+12	|	0
+12	|	1
+12	|	2
+12	|	3
 --End of most viewed classes--
-quit done.
+WatchClass: SUCCESS
+WatchClass: SUCCESS
+WatchClass: SUCCESS
+WatchClass: INVALID_INPUT
+WatchClass: INVALID_INPUT
+WatchClass: INVALID_INPUT
+WatchClass: SUCCESS
+WatchClass: SUCCESS
+WatchClass: INVALID_INPUT
