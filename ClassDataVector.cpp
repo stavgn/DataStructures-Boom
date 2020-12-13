@@ -54,20 +54,20 @@ bool ClassData::operator<(const ClassData &dv) const
 
 bool ClassData::operator<=(const ClassData &dv) const
 {
-    return (*this == dv) || (*this < dv);
+    return ((*this == dv) || (*this < dv));
 }
 
 bool ClassData::operator>(const ClassData &dv) const
 {
-    return !(*this < dv);
+    return !(*this <= dv);
 }
 bool ClassData::operator>=(const ClassData &dv) const
 {
-    return (*this == dv) || (*this > dv);
+    return ((*this == dv) || (*this > dv));
 }
 bool ClassData::operator==(const ClassData &dv) const
 {
-    return (time() == dv.time()) && (course() < dv.course()) && (classNum() == dv.classNum());
+    return ((time() == dv.time()) && (course() == dv.course()) && (classNum() == dv.classNum()));
 }
 bool ClassData::operator!=(const ClassData &dv) const
 {

@@ -90,6 +90,10 @@ namespace DS
             return nullptr; //case not found
         }
         tree_node<KEY, DATA> *removen_node = children_array[place_in_node];
+        if(removen_node->key != removen_key)
+        {
+            return nullptr;
+        }
         for (int i = place_in_node; i < length - 1; i++)
         {
             children_array[i] = children_array[i + 1];

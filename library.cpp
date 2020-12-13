@@ -61,7 +61,7 @@ StatusType RemoveCourse(void *DS, int courseID)
 
 StatusType WatchClass(void *DS, int courseID, int classID, int time)
 {
-    if (DS == nullptr || courseID <= 0 || classID < 0)
+    if (DS == nullptr || courseID <= 0 || classID < 0 || time <=0)
     {
         return INVALID_INPUT;
     }
