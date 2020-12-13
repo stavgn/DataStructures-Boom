@@ -1,20 +1,5 @@
 init done.
 AddCourse: SUCCESS
-AddCourse: FAILURE
-AddCourse: INVALID_INPUT
-AddCourse: INVALID_INPUT
-AddCourse: INVALID_INPUT
-AddCourse: INVALID_INPUT
-AddCourse: INVALID_INPUT
-AddCourse: INVALID_INPUT
-AddCourse: INVALID_INPUT
-RemoveCourse: FAILURE
-RemoveCourse: SUCCESS
-RemoveCourse: FAILURE
-RemoveCourse: INVALID_INPUT
-RemoveCourse: INVALID_INPUT
-WatchClass: FAILURE
-AddCourse: SUCCESS
 WatchClass: SUCCESS
 WatchClass: SUCCESS
 WatchClass: INVALID_INPUT
@@ -27,3 +12,25 @@ WatchClass: SUCCESS
 WatchClass: SUCCESS
 WatchClass: SUCCESS
 WatchClass: SUCCESS
+WatchClass: SUCCESS
+WatchClass: SUCCESS
+WatchClass: INVALID_INPUT
+WatchClass: INVALID_INPUT
+WatchClass: INVALID_INPUT
+WatchClass: INVALID_INPUT
+WatchClass: INVALID_INPUT
+WatchClass: INVALID_INPUT
+WatchClass: SUCCESS
+WatchClass: SUCCESS
+WatchClass: SUCCESS
+WatchClass: SUCCESS
+WatchClass: SUCCESS
+GetMostViewedClasses: SUCCESS
+Course	|	Class
+1	|	1
+1	|	2
+1	|	4
+1	|	0
+1	|	3
+--End of most viewed classes--
+quit done.

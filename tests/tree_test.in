@@ -1,0 +1,29 @@
+Init
+AddCourse 1 5
+WatchClass 1 2 10
+WatchClass 1 2 10
+WatchClass 1 2 -10
+WatchClass 1 2 0
+WatchClass 1 -2 0
+WatchClass 1 -2 0
+WatchClass 0 1 0
+WatchClass -1 1 0
+WatchClass 1 1 4
+WatchClass 1 1 5
+WatchClass 1 1 6
+WatchClass 1 1 7
+WatchClass 1 2 10
+WatchClass 1 2 10
+WatchClass 1 2 -10
+WatchClass 1 2 0
+WatchClass 1 -2 0
+WatchClass 1 -2 0
+WatchClass 0 1 0
+WatchClass -1 1 0
+WatchClass 1 1 4
+WatchClass 1 1 5
+WatchClass 1 1 6
+WatchClass 1 1 7 
+WatchClass 1 4 1 
+GetMostViewedClasses 5
+Quit

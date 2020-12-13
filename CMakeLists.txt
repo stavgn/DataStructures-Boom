@@ -6,7 +6,7 @@
 project(wet_1)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_CXX_COMPILER /usr/bin/g++ CACHE PATH "" FORCE)
+set(CMAKE_CXX_COMPILER  D:\\gcc\\bin\\g++ CACHE PATH "" FORCE)
 # # (Optionally uncomment): see more output from cmake during build,
 # # including specific gcc command(s).
 # set(CMAKE_VERBOSE_MAKEFILE ON)
@@ -18,6 +18,6 @@ set(MTM_FLAGS_RELEASE "${MTM_FLAGS_DEBUG} -DNDBUG")
 set(CMAKE_CPP_FLAGS ${MTM_FLAGS_DEBUG})
 # Tell CMake to build an executable named mtm_tot, specifying the comprising file(s)
 
-add_executable(wet_1 main_for_testing.cpp Boom.cpp ClassDataVector.cpp Exception.cpp library.cpp Vector.cpp)
-# add_executable(wet_1 main1.cpp Boom.cpp ClassDataVector.cpp Exception.cpp library.cpp Vector.cpp)
+# add_executable(wet_1 main_for_testing.cpp Boom.cpp ClassDataVector.cpp Exception.cpp library.cpp Vector.cpp)
+add_executable(wet_1 main1.cpp Boom.cpp ClassDataVector.cpp Exception.cpp library.cpp Vector.cpp)
 #  add_executable(wet_1 main.cpp)

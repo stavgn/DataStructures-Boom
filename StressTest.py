@@ -1,7 +1,7 @@
 """ ===================================================================================================================
 
 Written by Yaniv Wolf.
-Last updated 08/12/2020.
+Last updated 08\12\2020.
 
 Stress Test generator for DS1 Wet1.
 
@@ -46,7 +46,7 @@ NUMBER_OF_COURSES = 500 #Don't go too wild, espcially if you're testing on the c
 # If you want to use the current directory, leave a blank string ("").
 # Example for Windows directory: "C:\\Users\\USERNAME\\Technion\\Courses\\234218_Data_Structures_1\\HW\\Wet_1\\tests"
 # Example for Linux directory: "/home/USERNAME/ds1/wet1/tests"
-DIRECTORY = "/home/dor-hay.sha/data_structure/wet_1/tests"
+DIRECTORY = "D:\HW\Data Structures\wet 1\DataStructures-Boom-Dor\DataStructures-Boom\tests"
 
 # Set names of test in and out files. Recommended format: "test.in" and "test.out"
 TEST_IN_NAME = "test.in"
@@ -192,8 +192,8 @@ def main():
     writeTestFiles(courses,classes)
     print("Done generating Test Files.\n")
 
-    os.system("/home/dor-hay.sha/data_structure/wet_1/build/wet_1 < /home/dor-hay.sha/data_structure/wet_1/tests/test.in > /home/dor-hay.sha/data_structure/wet_1/out.txt")
-    os.system("diff /home/dor-hay.sha/data_structure/wet_1/out.txt /home/dor-hay.sha/data_structure/wet_1/tests/test.out")
+    os.system("D:\HW\Data Structures\wet 1\DataStructures-Boom-Dor\DataStructures-Boom\build\wet_1 < D:\HW\Data Structures\wet 1\DataStructures-Boom-Dor\DataStructures-Boom\tests\test.in > \D:\HW\Data Structures\wet 1\DataStructures-Boom-Dor\DataStructures-Boom\out.txt")
+    os.system("diff D:\HW\Data Structures\wet 1\DataStructures-Boom-Dor\DataStructures-Boom\out.txt D:\HW\Data Structures\wet 1\DataStructures-Boom-Dor\DataStructures-Boom\tests\test.out")
 
 # =================
 # Run the program:
