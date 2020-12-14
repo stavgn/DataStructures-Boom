@@ -1,0 +1,502 @@
+/*
+ * testAVLTree.cpp
+ *
+ *  Created on: 19 ���� 2013
+ *      Author: shirel
+ */
+
+#include "Tree.h"
+#include <vector>
+#include <ostream>
+#include <random>
+#include <chrono>
+#include <algorithm>
+#include <iostream>
+
+using namespace DS;
+int main(){
+Tree <int,int> tree;
+	//Specific Cases
+
+/*correct output for the four next cases
+1 BF: 0 Height: 0
+2 BF: 0 Height: 1
+3 BF: 0 Height: 0 */
+
+//basic LL root change case1
+std::cout<<"case1"<<std::endl;
+	tree.insert(3,new int(3));
+	tree.insert(2,new int(2));
+	tree.insert(1,new int(1));
+	tree.printTree();
+	tree.treeClear();
+
+	//basic LR root change case2
+	std::cout<<"case2"<<std::endl;
+	tree.insert(3,new int(3));
+	tree.insert(1,new int(1));
+	tree.insert(2,new int(2));
+	tree.printTree();
+	tree.treeClear();
+
+	//basic RR root change case3
+	std::cout<<"case3"<<std::endl;
+	tree.insert(1,new int(1));
+	tree.insert(2,new int(2));
+	tree.insert(3,new int(3));
+	tree.printTree();
+	tree.treeClear();
+
+	//basic RL root change case4
+	std::cout<<"case4"<<std::endl;
+	tree.insert(1,new int(1));
+	tree.insert(3,new int(3));
+	tree.insert(2,new int(2));
+	tree.printTree();
+	tree.treeClear();
+//basic LR not root change case5
+/*correct output
+/*1 BF: 0 Height: 0
+2 BF: 0 Height: 1
+3 BF: 0 Height: 0
+4 BF: 1 Height: 2
+5 BF: 0 Height: 0
+6 BF: 1 Height: 3
+7 BF: 0 Height: 0
+8 BF: 1 Height: 1 */
+std::cout<<"case5"<<std::endl;
+	tree.insert(6,new int(6));
+	tree.printTree();
+	tree.insert(4,new int(4));
+	tree.printTree();
+	tree.insert(8,new int(8));
+	tree.printTree();
+	tree.insert(3,new int(3));
+	tree.printTree();
+	tree.insert(5,new int(5));
+	tree.printTree();
+	tree.insert(7,new int(7));
+	tree.printTree();
+	tree.insert(1,new int(1));
+	tree.printTree();
+	tree.insert(2,new int(2));
+	tree.printTree();
+	tree.printTree();
+	tree.treeClear();
+
+	//basic LL not root change case6
+	/*correct output
+1 BF: 0 Height: 0
+2 BF: 0 Height: 1
+3 BF: 0 Height: 0
+4 BF: 1 Height: 2
+5 BF: 0 Height: 0
+6 BF: 1 Height: 3
+7 BF: 0 Height: 0
+8 BF: 1 Height: 1 */
+std::cout<<"case6"<<std::endl;
+	tree.insert(6,new int(6));
+	tree.insert(4,new int(4));
+	tree.insert(8,new int(8));
+	tree.insert(3,new int(3));
+	tree.insert(5,new int(5));
+	tree.insert(7,new int(7));
+	tree.insert(2,new int(2));
+	tree.insert(1,new int(1));
+	tree.printTree();
+	tree.treeClear();
+
+	//basic RR not root change case7
+	/*correct output
+1 BF: 0 Height: 0
+2 BF: 0 Height: 1
+3 BF: 0 Height: 0
+5 BF: 1 Height: 2
+7 BF: 0 Height: 0*/
+std::cout<<"case7"<<std::endl;
+	tree.insert(5,new int(5));
+	tree.insert(7,new int(7));
+	tree.insert(1,new int(1));
+	tree.insert(2,new int(2));
+	tree.insert(3,new int(3));
+	tree.printTree();
+	tree.treeClear();
+
+
+
+
+	//basic RL not root change case8
+	/*correct output
+1 BF: 0 Height: 0
+2 BF: 0 Height: 1
+3 BF: 0 Height: 0
+5 BF: 1 Height: 2
+7 BF: 0 Height: 0*/
+std::cout<<"case8"<<std::endl;
+	tree.insert(5,new int(5));
+	tree.insert(7,new int(7));
+	tree.insert(1,new int(1));
+	tree.insert(3,new int(3));
+	tree.insert(2,new int(2));
+	tree.printTree();
+	tree.treeClear();
+
+	//root deletion no roll successor is a neighbour case9
+	/*correct output
+2 BF: 0 Height: 0
+3 BF: 1 Height: 1
+5 BF: 1 Height: 2
+6 BF: 0 Height: 0*/
+std::cout<<"case9"<<std::endl;
+	tree.insert(4,new int(4));
+	tree.insert(5,new int(5));
+	tree.insert(3,new int(3));
+	tree.insert(2,new int(2));
+	tree.insert(6,new int(6));
+	tree.remove(4);
+	tree.printTree();
+	tree.treeClear();
+
+		//root deletion no roll successor is not a neighbour case10
+	/*correct output
+2 BF: 0 Height: 0
+3 BF: 1 Height: 1
+5 BF: 0 Height: 2
+6 BF: 0 Height: 0
+7 BF: 0 Height: 1
+8 BF: 0 Height: 0 */
+std::cout<<"case10"<<std::endl;
+	tree.insert(4,new int(4));
+	tree.insert(3,new int(3));
+	tree.insert(7,new int(7));
+	tree.insert(2,new int(2));
+	tree.insert(5,new int(5));
+	tree.insert(8,new int(8));
+	tree.insert(6,new int(6));
+	tree.remove(4);
+	tree.printTree();
+	tree.treeClear();
+
+
+    //node deletion no roll successor is a neighbour case11
+	/*correct output
+1 BF: 0 Height: 0
+2 BF: 1 Height: 1
+4 BF: 1 Height: 2
+5 BF: 0 Height: 0
+7 BF: 1 Height: 3
+8 BF: -1 Height: 1
+9 BF: 0 Height: 0*/
+std::cout<<"case11"<<std::endl;
+	tree.insert(7,new int(7));
+	tree.insert(3,new int(3));
+	tree.insert(8,new int(8));
+	tree.insert(2,new int(2));
+	tree.insert(4,new int(4));
+	tree.insert(9,new int(9));
+	tree.insert(5,new int(5));
+	tree.insert(1,new int(1));
+	tree.remove(3);
+	tree.printTree();
+	tree.treeClear();
+
+	//node deletion no roll successor is not a neighbour case12
+	/*correct output
+1 BF: 0 Height: 0
+2 BF: 1 Height: 1
+5 BF: 0 Height: 2
+6 BF: 0 Height: 0
+7 BF: 0 Height: 1
+8 BF: 0 Height: 0
+9 BF: 0 Height: 3
+10 BF: 0 Height: 0
+12 BF: -1 Height: 2
+13 BF: -1 Height: 1
+14 BF: 0 Height: 0*/
+std::cout<<"case12"<<std::endl;
+	tree.insert(9,new int(9));
+	tree.insert(3,new int(3));
+	tree.insert(12,new int(12));
+	tree.insert(2,new int(2));
+	tree.insert(7,new int(7));
+	tree.insert(10,new int(10));
+	tree.insert(13,new int(13));
+	tree.insert(1,new int(1));
+	tree.insert(5,new int(5));
+	tree.insert(8,new int(8));
+	tree.insert(14,new int(14));
+	tree.insert(6,new int(6));
+	tree.remove(3);
+	tree.printTree();
+	tree.treeClear();
+
+	//node deletion causing LR case13
+	/*correct output
+1 BF: 0 Height: 0
+2 BF: 0 Height: 1
+3 BF: 0 Height: 0
+4 BF: 0 Height: 2
+7 BF: -1 Height: 1
+8 BF: 0 Height: 0*/
+std::cout<<"case13"<<std::endl;
+	tree.insert(7,new int(7));
+	tree.insert(2,new int(2));
+	tree.insert(8,new int(8));
+	tree.insert(1,new int(1));
+	tree.insert(4,new int(4));
+	tree.insert(9,new int(9));
+	tree.insert(3,new int(3));
+	tree.remove(9);
+	tree.printTree();
+	tree.treeClear();
+
+	//node deletion causing LL case14
+	/*correct output
+1 BF: 0 Height: 0
+2 BF: 1 Height: 1
+3 BF: 0 Height: 2
+4 BF: 0 Height: 0
+7 BF: 0 Height: 1
+8 BF: 0 Height: 0*/
+std::cout<<"case14"<<std::endl;
+	tree.insert(7,new int(7));
+	tree.insert(3,new int(3));
+	tree.insert(8,new int(8));
+	tree.insert(2,new int(2));
+	tree.insert(4,new int(4));
+	tree.insert(9,new int(9));
+	tree.insert(1,new int(1));
+	tree.remove(9);
+	tree.printTree();
+	tree.treeClear();
+
+	//node deletion causing RR case15
+	/*correct output
+2 BF: 0 Height: 0
+3 BF: 0 Height: 1
+7 BF: 0 Height: 0
+8 BF: 0 Height: 2
+9 BF: -1 Height: 1
+10 BF: 0 Height: 0*/
+std::cout<<"case15"<<std::endl;
+	tree.insert(3,new int(3));
+	tree.insert(2,new int(2));
+	tree.insert(8,new int(8));
+	tree.insert(7,new int(7));
+	tree.insert(1,new int(1));
+	tree.insert(9,new int(9));
+	tree.insert(10,new int(10));
+	tree.remove(1);
+	tree.printTree();
+	tree.treeClear();
+
+	//node deletion causing RL case16
+	/*correct output
+2 BF: 0 Height: 0
+3 BF: 1 Height: 1
+7 BF: 0 Height: 2
+10 BF: 0 Height: 0
+13 BF: 0 Height: 1
+14 BF: 0 Height: 0*/
+std::cout<<"case16"<<std::endl;
+	tree.insert(3,new int(3));
+	tree.insert(2,new int(2));
+	tree.insert(13,new int(13));
+	tree.insert(7,new int(7));
+	tree.insert(1,new int(1));
+	tree.insert(14,new int(14));
+	tree.insert(10,new int(10));
+	tree.remove(1);
+	tree.printTree();
+	tree.treeClear();
+
+	//double rotations RL and RR case 17
+	/*correct output
+3 BF: 0 Height: 0
+5 BF: 0 Height: 1
+7 BF: 0 Height: 0
+9 BF: 0 Height: 2
+11 BF: 0 Height: 0
+13 BF: 1 Height: 1
+15 BF: 0 Height: 3
+17 BF: 0 Height: 0
+19 BF: -1 Height: 2
+21 BF: -1 Height: 1
+23 BF: 0 Height: 0*/
+std::cout<<"case17"<<std::endl;
+	tree.insert(9,new int(9));
+	tree.printTree();
+	tree.insert(3,new int(3));
+	tree.printTree();
+	tree.insert(15,new int(15));
+	tree.printTree();
+	tree.insert(1,new int(1));
+	tree.printTree();
+	tree.insert(7,new int(7));
+	tree.printTree();
+	tree.insert(13,new int(13));
+	tree.printTree();
+	tree.insert(19,new int(19));
+	tree.printTree();
+	tree.insert(5,new int(5));
+	tree.printTree();
+	tree.insert(11,new int(11));
+	tree.printTree();
+	tree.insert(17,new int(17));
+	tree.printTree();
+	tree.insert(21,new int(21));
+	tree.printTree();
+	tree.insert(23,new int(23));
+	tree.printTree();
+	tree.remove(1);
+	tree.printTree();
+	tree.treeClear();
+
+	//double rotations RR and RR case 18
+	/*correct output
+3 BF: 0 Height: 0
+7 BF: 0 Height: 1
+8 BF: 0 Height: 0
+9 BF: 0 Height: 2
+11 BF: 0 Height: 0
+13 BF: 1 Height: 1
+15 BF: 0 Height: 3
+17 BF: 0 Height: 0
+19 BF: -1 Height: 2
+21 BF: -1 Height: 1
+23 BF: 0 Height: 0*/
+std::cout<<"case18"<<std::endl;
+	tree.insert(9,new int(9));
+	tree.insert(3,new int(3));
+	tree.insert(15,new int(15));
+	tree.insert(1,new int(1));
+	tree.insert(7,new int(7));
+	tree.insert(13,new int(13));
+	tree.insert(19,new int(19));
+	tree.insert(8,new int(8));
+	tree.insert(11,new int(11));
+	tree.insert(17,new int(17));
+	tree.insert(21,new int(21));
+	tree.insert(23,new int(23));
+	tree.remove(1);
+	tree.printTree();
+	tree.treeClear();
+
+	//double rotations RL and LL case 19
+	/*correct output
+6 BF: 0 Height: 0
+7 BF: 1 Height: 1
+8 BF: 1 Height: 2
+9 BF: 0 Height: 0
+10 BF: 0 Height: 3
+11 BF: -1 Height: 1
+12 BF: 0 Height: 0
+15 BF: 0 Height: 2
+17 BF: 0 Height: 0
+18 BF: 0 Height: 1
+20 BF: 0 Height: 0
+	 */
+	std::cout<<"case19"<<std::endl;
+	tree.insert(15,new int(15));
+	tree.insert(10,new int(10));
+	tree.insert(20,new int(20));
+	tree.insert(8,new int(8));
+	tree.insert(11,new int(11));
+	tree.insert(17,new int(17));
+	tree.insert(21,new int(21));
+	tree.insert(7,new int(7));
+	tree.insert(9,new int(9));
+	tree.insert(12,new int(12));
+	tree.insert(18,new int(18));
+	tree.insert(6,new int(6));
+	tree.remove(21);
+	tree.printTree();
+	tree.treeClear();
+
+	//double rotations LR and LL case 20
+	/*correct output
+6 BF: 0 Height: 0
+7 BF: 1 Height: 1
+8 BF: 1 Height: 2
+9 BF: 0 Height: 0
+10 BF: 0 Height: 3
+11 BF: -1 Height: 1
+12 BF: 0 Height: 0
+15 BF: 0 Height: 2
+20 BF: 0 Height: 0
+21 BF: 0 Height: 1
+22 BF: 0 Height: 0 */
+std::cout<<"case20"<<std::endl;
+	tree.insert(15,new int(15));
+	tree.insert(10,new int(10));
+	tree.insert(20,new int(20));
+	tree.insert(8,new int(8));
+	tree.insert(11,new int(11));
+	tree.insert(17,new int(17));
+	tree.insert(22,new int(22));
+	tree.insert(7,new int(7));
+	tree.insert(9,new int(9));
+	tree.insert(12,new int(12));
+	tree.insert(21,new int(21));
+	tree.insert(6,new int(6));
+	tree.remove(17);
+	tree.printTree();
+	tree.treeClear();
+
+	//delete node cause LR case21
+	/*correct output
+2 BF: 0 Height: 0
+3 BF: -1 Height: 2
+4 BF: 0 Height: 0
+6 BF: 1 Height: 1*/
+std::cout<<"case21"<<std::endl;
+	tree.insert(5,new int(5));
+	tree.insert(3,new int(3));
+	tree.insert(6,new int(6));
+	tree.insert(2,new int(2));
+	tree.insert(4,new int(4));
+	tree.remove(5);
+	tree.printTree();
+	tree.treeClear();
+
+	//delete node cause LR case22
+	/*correct output
+2 BF: 0 Height: 0
+3 BF: 0 Height: 1
+6 BF: 0 Height: 0*/
+std::cout<<"case22"<<std::endl;
+	tree.insert(5,new int(5));
+	tree.insert(3,new int(3));
+	tree.insert(6,new int(6));
+	tree.insert(2,new int(2));
+	tree.remove(5);
+	tree.printTree();
+	tree.treeClear();
+
+	std::vector<int> vector;
+	 for (int i=1; i<=100; i++) vector.push_back(i);
+
+	 //Randomly insert and removes nodes
+	 for (int k = 0; k < 100; ++k) {
+		 unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+		 shuffle (vector.begin(), vector.end(), std::default_random_engine(seed));
+		 for (std::vector<int>::iterator it = vector.begin() ; it != vector.end(); ++it){
+				tree.insert(*it,new int(*it));
+
+		 }
+		 tree.printTree();
+		//  std::cout << "--------------------------------------------------------\n";
+		 shuffle (vector.begin(), vector.end(), std::default_random_engine(seed));
+		 for (std::vector<int>::iterator it = vector.begin() ; it != vector.end(); ++it){
+				tree.remove(*it);
+				tree.printTree();
+
+		 }
+		 tree.treeClear();
+		 tree.printTree();
+		  std::cout << '\n';
+	}
+
+	return 0;
+}
+

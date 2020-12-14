@@ -1,0 +1,20 @@
+#include <iostream>
+#include "Tree.h"
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "library.h"
+#include "Boom.h"
+
+using namespace  DS;
+using namespace  std;
+main(int, char **)
+{
+  bool t;
+ t =  (ClassData(0,0,0) < ClassData(1,0,0));
+ t =  ClassData(0,0,0) < ClassData(0,1,0);
+ t =  ClassData(0,0,0) < ClassData(0,0,1);
+ t =  ClassData(0,0,0) == ClassData(1,0,0);
+ t = ClassData(1,2,3) < ClassData(1,2,2);;
+}

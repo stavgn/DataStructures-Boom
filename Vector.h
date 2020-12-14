@@ -8,8 +8,8 @@ namespace DS
     class Vector
     {
     public:
-        int *data;
         int size;
+        int *data;
         Vector(int size);
         ~Vector();
         Vector (const Vector &origin);

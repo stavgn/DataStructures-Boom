@@ -10,8 +10,8 @@ namespace DS
 {
     class Boom
     {
-        Tree<int, Vector> courses;
         Tree<ClassData, ClassData> classes;
+        Tree<int, Vector> courses;
 
     private:
         /* data */

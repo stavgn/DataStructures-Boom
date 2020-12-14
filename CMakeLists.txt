@@ -6,7 +6,7 @@
 project(wet_1)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_CXX_COMPILER  D:\\gcc\\bin\\g++ CACHE PATH "" FORCE)
+set(CMAKE_CXX_COMPILER /usr/bin/g++ CACHE PATH "" FORCE)
 # # (Optionally uncomment): see more output from cmake during build,
 # # including specific gcc command(s).
 # set(CMAKE_VERBOSE_MAKEFILE ON)

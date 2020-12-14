@@ -256,8 +256,7 @@ namespace DS
         }
         if (is_leaf(father_node->children_array[0]))
         {
-            tree_node<KEY, DATA> *removen_node = father_node->remove(node->key);
-            assert(removen_node != nullptr);
+            father_node->remove(node->key);
             if (node->left_ptr == nullptr) //That means node is the smallest leaf
             {
                 assert(node->right_ptr != nullptr);
@@ -342,7 +341,7 @@ namespace DS
         {
             assert(brother_node->length == 2);
             tree_node<KEY, DATA> *lonly_child = unbalnced_node->children_array[0];
-            int new_place = brother_node->insert(lonly_child);
+            brother_node->insert(lonly_child);
             //fixing indexing
             if ((place_in_node == 0)) // incase the lonly node is the youngest
             {
