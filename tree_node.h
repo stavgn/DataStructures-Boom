@@ -12,7 +12,7 @@ namespace DS
         /* data */
     public:
         KEY index_array[3];                      //in case of node
-        KEY &key = index_array[0];                                //in case of leaf
+        KEY &key = index_array[0];               //in case of leaf
         tree_node<KEY, DATA> *children_array[4]; //in case of node
         DATA *data_ptr;                          //in case of leaf
         int length;
@@ -29,7 +29,7 @@ namespace DS
     tree_node<KEY, DATA>::tree_node(const KEY &inserted_key)
 
     {
-        children_array[0] =children_array[1] = children_array[2] = children_array[3] = nullptr;
+        children_array[0] = children_array[1] = children_array[2] = children_array[3] = nullptr;
         data_ptr = nullptr;
         left_ptr = nullptr;
         right_ptr = nullptr;
@@ -47,13 +47,17 @@ namespace DS
     template <class KEY, class DATA>
     int tree_node<KEY, DATA>::insert(tree_node *node)
     {
+        if(node->key == 234218)
+        {
+            int something = 0;
+        }
         assert(length < 4);
         int place_in_node = 0;
         for (place_in_node = 0; place_in_node < length; place_in_node++)
         {
             if (node->key < children_array[place_in_node]->key)
             {
-                if((place_in_node > 0) && (node->key == index_array[place_in_node - 1]))
+                if ((place_in_node > 0) && (node->key >= index_array[place_in_node - 1]))
                 {
                     assert(node->children_array[0] == nullptr); //is a leaf
                     index_array[place_in_node - 1] = children_array[place_in_node]->key;
@@ -81,6 +85,16 @@ namespace DS
 
         length += 1;
         assert(length <= 4);
+
+        for (int i = 0; i < length - 2; i++)
+        {
+            if (!(index_array[i] < index_array[i + 1]))
+            {
+                int something = 0;
+            }
+            assert(index_array[i] < index_array[i + 1]);
+        }
+
         return place_in_node;
     }
     template <class KEY, class DATA>
@@ -96,7 +110,7 @@ namespace DS
             return nullptr; //case not found
         }
         tree_node<KEY, DATA> *removen_node = children_array[place_in_node];
-        if(removen_node->key != removen_key)
+        if (removen_node->key != removen_key)
         {
             return nullptr;
         }
@@ -111,6 +125,11 @@ namespace DS
 
         children_array[length - 1] = nullptr;
         length -= 1;
+
+        for (int i = 0; i < length - 2; i++)
+        {
+            assert(index_array[i] < index_array[i + 1]);
+        }
 
         return removen_node;
     }
