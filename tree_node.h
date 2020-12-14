@@ -47,10 +47,6 @@ namespace DS
     template <class KEY, class DATA>
     int tree_node<KEY, DATA>::insert(tree_node *node)
     {
-        if(node->key == 234218)
-        {
-            int something = 0;
-        }
         assert(length < 4);
         int place_in_node = 0;
         for (place_in_node = 0; place_in_node < length; place_in_node++)
@@ -86,15 +82,6 @@ namespace DS
         length += 1;
         assert(length <= 4);
 
-        for (int i = 0; i < length - 2; i++)
-        {
-            if (!(index_array[i] < index_array[i + 1]))
-            {
-                int something = 0;
-            }
-            assert(index_array[i] < index_array[i + 1]);
-        }
-
         return place_in_node;
     }
     template <class KEY, class DATA>
@@ -126,12 +113,7 @@ namespace DS
         children_array[length - 1] = nullptr;
         length -= 1;
 
-        for (int i = 0; i < length - 2; i++)
-        {
-            assert(index_array[i] < index_array[i + 1]);
-        }
-
-        return removen_node;
+          return removen_node;
     }
 
 } // namespace DS

@@ -8,3 +8,5 @@ out.txt
 tests/test.in
 tests/test.out
 out.txt
+CMakeLists.txt
+out.txt
