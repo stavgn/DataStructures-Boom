@@ -53,6 +53,11 @@ namespace DS
         {
             if (node->key < children_array[place_in_node]->key)
             {
+                if((place_in_node > 0) && (node->key == index_array[place_in_node - 1]))
+                {
+                    assert(node->children_array[0] == nullptr); //is a leaf
+                    index_array[place_in_node - 1] = children_array[place_in_node]->key;
+                }
                 for (int i = length; i > place_in_node; i--)
                 {
                     children_array[i] = children_array[i - 1];
@@ -103,9 +108,10 @@ namespace DS
                 index_array[i] = index_array[i + 1];
             }
         }
+
         children_array[length - 1] = nullptr;
         length -= 1;
-        // assert(length >= 2);
+
         return removen_node;
     }
 

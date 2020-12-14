@@ -12,6 +12,7 @@ Boom::Boom() : classes(Tree<ClassData, ClassData>()), courses(Tree<int, Vector>(
 
 StatusType Boom::AddCourse(int courseID, int numOfClasses)
 {
+
     if (courses.find(courseID) == nullptr)
     {
         courses.insert(courseID, new Vector(numOfClasses));
